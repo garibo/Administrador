@@ -1,0 +1,34 @@
+<div class="adv-table editable-table ">
+    <div class="clearfix">
+        <div class="btn-group">
+            <button id="editable-sample_new" class="btn btn-primary">
+             <a href="#/nuevo">Agregar nuevo</a>    <i class="fa fa-plus"></i>
+            </button>
+        </div>
+        <div class="btn-group pull-right">
+            <label> <input type="text" aria-controls="editable-sample" class="form-control medium" placeholder="Buscar" ng-model="query"></label>
+        </div>
+    </div>
+    <div class="space15"></div>
+    <table class="table table-striped table-hover table-bordered" id="editable-sample">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido paterno</th>
+            <th>Apellido materno</th>
+            <th>Telefono</th>
+            <th>Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class=""  ng-repeat="repartidor in repartidores | filter:query">
+            <td>{{repartidor.nombre}}</td>
+            <td>{{repartidor.apellido_paterno}}</td>
+            <td>{{repartidor.apellido_materno}}</td>
+            <td class="center">{{repartidor.telefono}}</td>
+            <td><a class="edit" href="#/editar/{{repartidor.id}}">Edit</a></td>
+        </tr>
+ 
+        </tbody>
+    </table>
+</div>
