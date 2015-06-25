@@ -1,0 +1,36 @@
+<div class="adv-table editable-table ">
+    <div class="clearfix">
+        <div class="btn-group">
+            <button id="editable-sample_new" class="btn btn-primary">
+             <a href="#/nuevo">Agregar nuevo</a>    <i class="fa fa-plus"></i>
+            </button>
+        </div>
+        <div class="btn-group pull-right">
+            <label> <input type="text" aria-controls="editable-sample" class="form-control medium" placeholder="Buscar" ng-model="query"></label>
+        </div>
+    </div>
+    <div class="space15"></div>
+    <table class="table table-striped table-hover table-bordered" id="editable-sample">
+        <thead>
+        <tr>
+            <th>Index</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Precio</th>
+            <th>Ingredientes</th>
+            <th>Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class=""  ng-repeat="otro in otros | filter:query">
+            <td>{{$index + 1}}</td>
+            <td>{{otro.nombre}}</td>
+            <td>{{otro.descripcion}}</td>
+            <td>{{otro.precio}}</td>
+            <td>{{otro.ingredientes}}</td>
+            <td><a class="edit" href="#/editar/{{otro.id}}">Edit</a></td>
+        </tr>
+ 
+        </tbody>
+    </table>
+</div>

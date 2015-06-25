@@ -48,6 +48,7 @@
 			record.$save(function(response){
             	$scope.repartidores.push(record);
      		});
+     		
 			$scope.nombre = "";
 			$scope.apellido_paterno = "";
 			$scope.apellido_materno = "";

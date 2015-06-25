@@ -15,7 +15,7 @@ CREATE TABLE productos
 	descripcion 		varchar(140) 		character set utf8 collate utf8_spanish_ci,
 	precio				numeric(15,2),
 	ingredientes 		varchar(140) 		character set utf8 collate utf8_spanish_ci,
-	tamaño 				varchar(20) 		character set utf8 collate utf8_spanish_ci,
+	tamano 				varchar(20) 		character set utf8 collate utf8_spanish_ci,
 	tipo 				varchar(20) 		character set utf8 collate utf8_spanish_ci,
 	imagen_url			varchar(2083) 		character set utf8 collate utf8_spanish_ci,
 	PRIMARY KEY (id)
