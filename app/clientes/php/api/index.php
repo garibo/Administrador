@@ -52,7 +52,7 @@
 				'id' => $fila['id'],
 				'nombre' => $fila['nombre'],
 				'apellido_paterno' => $fila['apellido_paterno'],
-				'apellido_materno' => $fila['apellido_materno'],
+				'apellido_materno' => $fila['apellido_materno']
 				);
 			$i++;
 		}

@@ -1,0 +1,97 @@
+<style type="text/css">
+.imagedropshadow 
+{ 
+    padding: 5px; 
+    border: solid 1px #EFEFEF; 
+} 
+img.imagedropshadow 
+{ 
+    border: solid 1px #CCC; 
+    -moz-box-shadow: 1px 1px 5px #999; 
+    -webkit-box-shadow: 1px 1px 5px #999;
+    box-shadow: 1px 1px 5px #999; 
+}
+</style>
+<section class="panel">
+    <header class="panel-heading wht-bg">
+       <h4 class="gen-case"> Vista - Pedido
+           <form action="#" class="pull-right mail-src-position">
+            <div class="input-append">
+                <input type="text" class="form-control " placeholder="Search Mail">
+            </div>
+        </form>
+       </h4>
+    </header>
+    <div class="panel-body ">
+
+        <div class="mail-header row">
+            <div class="col-md-8">
+                <h4 class="pull-left"><strong>Cliente: </strong>{{datos.cliente}}</h4>
+            </div>
+            <div class="col-md-4">
+                <div class="compose-btn pull-right">
+                    <a href="mail_compose.html" class="btn btn-sm btn-primary" ><i class="fa fa-reply"></i> Reply</a>
+                    <button class="btn  btn-sm tooltips" data-original-title="Print" type="button" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-print"></i> </button>
+                    <button class="btn btn-sm tooltips" data-original-title="Trash" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-trash-o"></i></button>
+                </div>
+            </div>
+
+        </div>
+        <div class="mail-sender">
+            <div class="row">
+                <div class="col-md-8">
+                    <strong>Direccion: </strong>
+                    <span>{{datos.direccion}}</span>
+                </div>
+                <div class="col-md-4">
+                    <p class="date">{{datos.fecha}} - {{datos.hora}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="view-mail">
+            <table class="table  table-hover general-table">
+                            <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Ingredientes</th>
+                                <th>Tamaño</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Subtotal</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="producto in productos">
+                                <td>{{producto.nombre}}</td>
+                                <td >{{producto.ingredientes}}</td>
+                                <td>{{producto.tamano}}</td>
+                                <td>{{producto.precio}}</td>
+                                <td>{{producto.cantidad}}</td>
+                                <td>{{producto.total}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+        </div>
+
+        <div class="attachment-mail">
+        <div class="row">
+            <div class="col-md-3">
+                <p><strong>Calle: </strong><span>{{datos.calle}}</span></p>
+                <p><strong>Colonia: </strong><span>{{datos.colonia}}</span></p>
+                <p><strong>Numero: </strong><span>{{datos.numero}}</span></p>
+                <p><strong>Entre calles: </strong>{{datos.entre_calles}}<span></span></p>
+                <p><strong>extra: </strong><span>{{datos.extra}}</span></p>
+            </div>
+            <div class="col-md-9">
+                <img src="mapa.png" width="100%" class="imagedropshadow">
+            </div>
+        </div>
+        </div>
+        <div class="compose-btn pull-left">
+            <a href="mail_compose.html" class="btn btn-sm btn-primary" ><i class="fa fa-reply"></i> Reply</a>
+            <button class="btn btn-sm " ><i class="fa fa-arrow-right"></i> Forward</button>
+            <button class="btn  btn-sm tooltips" data-original-title="Print" type="button" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-print"></i> </button>
+            <button class="btn btn-sm tooltips" data-original-title="Trash" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-trash-o"></i></button>
+        </div>
+    </div>
+</section>
