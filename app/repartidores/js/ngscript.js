@@ -1,6 +1,6 @@
 (function(){
 
-	angular.module('repartidoresApp', ['ngRoute','ngResource'])
+	angular.module('repartidoresApp', ['ngRoute','ngResource', 'ngMessages'])
 
 	.config(function($routeProvider) {
 		$routeProvider.
@@ -46,6 +46,7 @@
 			record.telefono = $scope.telefono;
 
 			record.$save(function(response){
+				swal("Repartidor agregado!", "El registro se ha realizado exitosamente", "success");
             	$scope.repartidores.push(record);
      		});
      		
@@ -53,6 +54,7 @@
 			$scope.apellido_paterno = "";
 			$scope.apellido_materno = "";
 			$scope.telefono = "";
+			$scope.repartidoresForm.$setUntouched();
 		}
 
 	})
@@ -69,7 +71,7 @@
 						$scope.nombre = $scope.repartidores[i].nombre;
 						$scope.apellido_paterno = $scope.repartidores[i].apellido_paterno;
 						$scope.apellido_materno = $scope.repartidores[i].apellido_materno;
-						$scope.telefono = $scope.repartidores[i].telefono;
+						$scope.telefono = parseInt($scope.repartidores[i].telefono);
 
 
 						re.id = $routeParams.id;
@@ -93,8 +95,19 @@
 				{
 					if($scope.repartidores[i].id == $routeParams.id)
 					{
-						$scope.repartidores.splice(i,1);
-						break;
+						swal({   title: "Estas seguro?",   
+							text: "Ya no podras recuperar este registro",   
+							type: "warning",   
+							showCancelButton: true,   
+							confirmButtonColor: "#DD6B55",  
+							cancelButtonText: "Cancelar!", 
+							confirmButtonText: "Si, Eliminalo!",   
+							closeOnConfirm: false }, 
+							function(){  
+							swal("Eliminado!", "El registro ha sido eliminado.", "success"); 
+							$scope.repartidores.splice(i,1);
+							document.location.href = "http://localhost/administrador/app/repartidores/#/";
+						});
 					}
 				}
 			});
@@ -107,8 +120,8 @@
 			re.apellido_paterno = $scope.apellido_paterno;
 			re.apellido_materno = $scope.apellido_materno;
 			re.telefono = $scope.telefono;
-
 			Repartidores.update({ id: $routeParams.id }, re);
+			swal("Repartidor actualizado!", "El registro se ha actualizado exitosamente", "success");
 		}
 
 

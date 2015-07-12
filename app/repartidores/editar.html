@@ -1,27 +1,71 @@
-<form>
-  <div class="form-group">
+<form name="editForm" ng-submit="editar()" novalidate>
+ 
+  <!-- Campo nombre -->
+  <div class="form-group" ng-class="{ 'has-error': editForm.nombre.$touched && editForm.nombre.$invalid }">
     <label>Nombre</label>
-    <input type="text" class="form-control" ng-model="nombre">
+    <input type="text" class="form-control" 
+    ng-model="nombre" 
+    name="nombre" 
+    ng-maxlength="35" 
+    required>
+      <div class="help-block" ng-messages="editForm.nombre.$error" ng-if="editForm.nombre.$touched">
+      <p ng-message="maxlength">El nombre es muy largo.</p>
+      <p ng-message="required">El nombre es requerido.</p>
+    </div>
   </div>
+  <!-- Campo nombre -->
 
-  <div class="form-group">
+
+  <!-- Campo apellido paterno -->
+  <div class="form-group" ng-class="{ 'has-error': editForm.apellidoPaterno.$touched && editForm.apellidoPaterno.$invalid }">
     <label>Apellido paterno</label>
-    <input type="text" class="form-control" ng-model="apellido_paterno">
+    <input type="text" class="form-control" 
+    ng-model="apellido_paterno"
+    name="apellidoPaterno"
+    ng-maxlength="35" 
+    required>
+      <div class="help-block" ng-messages="editForm.apellidoPaterno.$error" ng-if="editForm.apellidoPaterno.$touched">
+      <p ng-message="maxlength">El apellido paterno es muy largo.</p>
+      <p ng-message="required">El apellido paterno es requerido.</p>
+    </div>
   </div>
-  
-    <div class="form-group">
-    <label>Apellido materno</label>
-    <input type="text" class="form-control" ng-model="apellido_materno">
-  </div>
+  <!-- Campo apellido paterno -->
   
 
-  <div class="form-group">
-    <label>Telefono</label>
-    <input type="text" class="form-control" ng-model="telefono">
+  <!-- Campo apellido materno -->
+  <div class="form-group" ng-class="{ 'has-error': editForm.apellidoMaterno.$touched && editForm.apellidoMaterno.$invalid }">
+    <label>Apellido materno</label>
+    <input type="text" class="form-control" 
+    ng-model="apellido_materno" 
+    name="apellidoMaterno"
+    ng-maxlength="35"
+    required>
+      <div class="help-block" ng-messages="editForm.apellidoMaterno.$error" ng-if="editForm.apellidoMaterno.$touched">
+      <p ng-message="maxlength">El apellido materno es muy largo.</p>
+      <p ng-message="required">El apellido materno es requerido.</p>
+    </div>
   </div>
+  <!-- Campo apellido materno -->
+  
+
+  <!-- Campo telefono -->
+  <div class="form-group" ng-class="{ 'has-error': editForm.telefono.$touched && editForm.telefono.$invalid }">
+    <label>Telefono</label>
+    <input type="number" class="form-control" 
+    ng-model="telefono"
+    name="telefono" 
+    ng-maxlength="15"
+    required>
+      <div class="help-block" ng-messages="editForm.telefono.$error" ng-if="editForm.telefono.$touched">
+      <p ng-message="maxlength">El telefono es muy largo.</p>
+      <p ng-message="required">El telefono es requerido.</p>
+      <p ng-message="number">El telefono no es valido.</p>
+    </div>
+  </div>
+  <!-- Campo telefono -->
 
 <center>
-<button type="button" class="btn btn-info" ng-click="editar()">Actualizar</button>
+<button type="submit" class="btn btn-info" ng-disabled="editForm.$invalid">Actualizar</button>
 <button type="button" class="btn btn-default"><a href="#/">Cancelar</a></button>
 <button type="button" class="btn btn-danger" ng-click="eliminar()">Eliminar</button>
 </center>
