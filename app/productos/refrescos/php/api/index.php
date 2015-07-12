@@ -45,9 +45,9 @@
 		$partes=parse_url($_SERVER["REQUEST_URI"]);
 		$parametro=explode('/', $partes['path'])[7];
 
-		$peticion = "SELECT * FROM productos";
-		$peticion.= $parametro == "" ? "" : " WHERE id = $parametro AND ";
-		$peticion.= " WHERE tipo = 'refresco'";
+		$peticion = "SELECT * FROM productos WHERE";
+		$peticion.= $parametro == "" ? "" : " id = $parametro AND ";
+		$peticion.= " tipo = 'refresco'";
 
 		$sql = mysql_query($peticion);
 		$i = 0;
