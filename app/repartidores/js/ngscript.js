@@ -89,33 +89,31 @@
 
 		$scope.eliminar = function()
 		{
-
-			re.$remove(function()
+			swal({   title: "Estas seguro?",   
+				text: "Ya no podras recuperar este registro",   
+				type: "warning",   
+				showCancelButton: true,   
+				confirmButtonColor: "#DD6B55",  
+				cancelButtonText: "Cancelar!", 
+				confirmButtonText: "Si, Eliminalo!",   
+				closeOnConfirm: false }, 
+				function(){  
+				re.$remove(function()
 				{
 					for(var i=0,len=$scope.repartidores.length;i<len;i++)
 					{
 						if($scope.repartidores[i].id == $routeParams.id)
 						{
-							
-							swal({   title: "Estas seguro?",   
-								text: "Ya no podras recuperar este registro",   
-								type: "warning",   
-								showCancelButton: true,   
-								confirmButtonColor: "#DD6B55",  
-								cancelButtonText: "Cancelar!", 
-								confirmButtonText: "Si, Eliminalo!",   
-								closeOnConfirm: false }, 
-								function(){  
-								$scope.repartidores.splice(i,1);
-								swal("Eliminado!", "El registro ha sido eliminado.", "success"); 
-								document.location.href = "http://localhost/administrador/app/repartidores/#/";
-							});
+							$scope.repartidores.splice(i,1);
+							swal("Eliminado!", "El registro ha sido eliminado.", "success"); 
+							document.location.href = "http://localhost/administrador/app/repartidores/#/";					
 							break;
 						}
 					}
 				});
-			
+			});
 		};
+
 
 		$scope.editar = function()
 		{
