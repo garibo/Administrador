@@ -1,6 +1,6 @@
 (function(){
 
-	angular.module('otrosApp', ['ngRoute','ngResource'])
+	angular.module('otrosApp', ['ngRoute','ngResource','ngMessages'])
 
 	.config(function($routeProvider) {
 		$routeProvider.
@@ -49,12 +49,14 @@
 
 			record.$save(function(response){
             	$scope.otros.push(record);
+            	swal("Platillo agregado!", "El registro se ha guardado!", "success");
      		});
 
 			$scope.nombre = "";
 			$scope.descripcion = "";
 			$scope.precio = "";
 			$scope.ingredientes = "";
+			$scope.nuevoForm.$setUntouched();
 			
 		}
 	})
@@ -70,7 +72,7 @@
 				{
 					$scope.nombre = $scope.otros[i].nombre;
 					$scope.descripcion = $scope.otros[i].descripcion;
-					$scope.precio = $scope.otros[i].precio;
+					$scope.precio = parseFloat($scope.otros[i].precio);
 					$scope.ingredientes = $scope.otros[i].ingredientes;
 
 
@@ -88,16 +90,28 @@
 
 		$scope.eliminar = function()
 		{
-			re.$remove(function()
-			{
-				for(var i=0,len=$scope.otros.length;i<len;i++)
+			swal({   title: "Estas seguro?",   
+				text: "Ya no podras recuperar este registro",   
+				type: "warning",   
+				showCancelButton: true,   
+				confirmButtonColor: "#DD6B55",  
+				cancelButtonText: "Cancelar!", 
+				confirmButtonText: "Si, Eliminalo!",   
+				closeOnConfirm: false }, 
+				function(){  
+				re.$remove(function()
 				{
-					if($scope.otros[i].id == $routeParams.id)
+					for(var i=0,len=$scope.otros.length;i<len;i++)
 					{
-						$scope.otros.splice(i,1);
-						break;
+						if($scope.otros[i].id == $routeParams.id)
+						{
+							$scope.otros.splice(i,1);
+							swal("Eliminado!", "El registro ha sido eliminado.", "success"); 
+							document.location.href = "http://localhost/administrador/app/productos/otros/#/";
+							break;
+						}
 					}
-				}
+				});
 			});
 		};
 
@@ -109,8 +123,8 @@
 			re.precio = $scope.precio;
 			re.ingredientes = $scope.ingredientes;
 			re.tipo = "otros";
-
 			Otros.update({ id: $routeParams.id }, re);
+			swal("Registro actualizado!", "El registro se ha actualizado exitosamente", "success");
 		};
 
 
