@@ -25,7 +25,7 @@
             <td>{{$index + 1}}</td>
             <td>{{refresco.nombre}}</td>
             <td>{{refresco.descripcion}}</td>
-            <td>{{refresco.precio}}</td>
+            <td>{{refresco.precio | currency}}</td>
             <td><a class="edit" ng-href="#/editar/{{refresco.id}}">Edit</a></td>
         </tr>
  

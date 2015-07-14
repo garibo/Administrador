@@ -1,6 +1,6 @@
 (function(){
 
-	angular.module('refrescoApp', ['ngRoute','ngResource'])
+	angular.module('refrescoApp', ['ngRoute','ngResource', 'ngMessages'])
 
 	.config(function($routeProvider) {
 		$routeProvider.
@@ -48,6 +48,7 @@
 
 			record.$save(function(response){
             	$scope.refrescos.push(record);
+            	swal("Bebida agregada!", "El registro se ha realizado exitosamente", "success");
      		});
 
 			$scope.nombre = "";
@@ -68,7 +69,7 @@
 				{
 					$scope.nombre = $scope.refrescos[i].nombre;
 					$scope.descripcion = $scope.refrescos[i].descripcion;
-					$scope.precio = $scope.refrescos[i].precio;
+					$scope.precio = parseFloat($scope.refrescos[i].precio);
 
 
 					re.id = $routeParams.id;
@@ -84,16 +85,28 @@
 
 		$scope.eliminar = function()
 		{
-			re.$remove(function()
-			{
-				for(var i=0,len=$scope.refrescos.length;i<len;i++)
+			swal({   title: "Estas seguro?",   
+				text: "Ya no podras recuperar este registro",   
+				type: "warning",   
+				showCancelButton: true,   
+				confirmButtonColor: "#DD6B55",  
+				cancelButtonText: "Cancelar!", 
+				confirmButtonText: "Si, Eliminalo!",   
+				closeOnConfirm: false }, 
+				function(){  
+				re.$remove(function()
 				{
-					if($scope.refrescos[i].id == $routeParams.id)
+					for(var i=0,len=$scope.refrescos.length;i<len;i++)
 					{
-						$scope.refrescos.splice(i,1);
-						break;
+						if($scope.refrescos[i].id == $routeParams.id)
+						{
+							$scope.refrescos.splice(i,1);
+							swal("Eliminado!", "El registro ha sido eliminado.", "success"); 
+							document.location.href = "http://localhost/administrador/app/productos/refrescos/#/";
+							break;
+						}
 					}
-				}
+				});
 			});
 		};
 
@@ -104,8 +117,8 @@
 			re.descripcion = $scope.descripcion;
 			re.precio = $scope.precio;
 			re.tipo = "refresco";
-
 			Refrescos.update({ id: $routeParams.id }, re);
+			swal("Bebida actualizada!", "El registro se ha actualizado exitosamente", "success");
 		};
 
 

@@ -1,22 +1,52 @@
-<form>
-  <div class="form-group">
+<form name="nuevoForm" ng-submit="agregar()" novalidate>
+
+  <div class="form-group" ng-class="{ 'has-error': nuevoForm.nombre.$touched && nuevoForm.nombre.$invalid }">
     <label>Nombre</label>
-    <input type="text" class="form-control" ng-model="nombre">
+    <input type="text" 
+    class="form-control" 
+    name="nombre"
+    ng-model="nombre"
+    ng-maxlength="35" 
+    required>
+    <div class="help-block" ng-messages="nuevoForm.nombre.$error" ng-if="nuevoForm.nombre.$touched">
+      <p ng-message="maxlength">El nombre es muy largo.</p>
+      <p ng-message="required">El nombre es requerido.</p>
+    </div>
   </div>
 
-  <div class="form-group">
+  <div class="form-group" ng-class="{ 'has-error': nuevoForm.descripcion.$touched && nuevoForm.descripcion.$invalid }">
     <label>Descripcion</label>
-    <input type="text" class="form-control" ng-model="descripcion">
+    <input type="text" 
+    class="form-control" 
+    name="descripcion"
+    ng-model="descripcion"
+    ng-maxlength="140" 
+    required>
+    <div class="help-block" ng-messages="nuevoForm.descripcion.$error" ng-if="nuevoForm.descripcion.$touched">
+      <p ng-message="maxlength">La descripcion es muy larga.</p>
+      <p ng-message="required">El descripcion es requerida.</p>
+    </div>
   </div>
   
-    <div class="form-group">
+   <div class="form-group" ng-class="{ 'has-error': nuevoForm.precio.$touched && nuevoForm.precio.$invalid }">
     <label>Precio</label>
-    <input type="text" class="form-control" ng-model="precio">
+    <input type="number" 
+    class="form-control" 
+    name="precio"
+    ng-model="precio" 
+    ng-maxlength="8"
+    required>
+
+    <div class="help-block" ng-messages="nuevoForm.precio.$error" ng-if="nuevoForm.precio.$touched">
+      <p ng-message="maxlength">El campo precio es muy largo.</p>
+      <p ng-message="required">El campo precio es requerido.</p>
+      <p ng-message="number">El campo precio no es valido.</p>
+    </div>
   </div>
   
 
 <center>
-<button type="button" class="btn btn-info" ng-click="agregar()">Agregar nuevo</button>
+<button type="submit" class="btn btn-info" ng-disabled="nuevoForm.$invalid">Agregar nuevo</button>
 <button type="button" class="btn btn-default"><a href="#/">Cancelar</a></button>
 </center>
 </form>
