@@ -1,6 +1,6 @@
 (function(){
 
-	angular.module('pizzaApp', ['ngRoute','ngResource'])
+	angular.module('pizzaApp', ['ngRoute','ngResource','ngMessages'])
 
 	.config(function($routeProvider) {
 		$routeProvider.
@@ -43,18 +43,19 @@
 			record.id = 1;
 			record.nombre = $scope.nombre;
 			record.descripcion = $scope.descripcion;
-			record.precio = $scope.precio;
+			record.precio = 0;
 			record.ingredientes = $scope.ingredientes;
 			record.tipo = 'pizza';
 
 			record.$save(function(response){
             	$scope.pizzas.push(record);
+     			swal("Pizza agregada!", "El registro se ha guardado!", "success");
      		});
 
 			$scope.nombre = "";
 			$scope.descripcion = "";
-			$scope.precio = "";
 			$scope.ingredientes = "";
+			$scope.nuevoForm.$setUntouched();
 			
 		}
 	})
@@ -88,16 +89,30 @@
 
 		$scope.eliminar = function()
 		{
-			re.$remove(function()
-			{
-				for(var i=0,len=$scope.pizzas.length;i<len;i++)
+			
+
+			swal({   title: "Estas seguro?",   
+				text: "Ya no podras recuperar este registro",   
+				type: "warning",   
+				showCancelButton: true,   
+				confirmButtonColor: "#DD6B55",  
+				cancelButtonText: "Cancelar!", 
+				confirmButtonText: "Si, Eliminalo!",   
+				closeOnConfirm: false }, 
+				function(){  
+				re.$remove(function()
 				{
-					if($scope.pizzas[i].id == $routeParams.id)
+					for(var i=0,len=$scope.pizzas.length;i<len;i++)
 					{
-						$scope.pizzas.splice(i,1);
-						break;
+						if($scope.pizzas[i].id == $routeParams.id)
+						{
+							$scope.pizzas.splice(i,1);
+							swal("Eliminado!", "El registro ha sido eliminado.", "success"); 
+							document.location.href = "http://localhost/administrador/app/productos/pizzas/#/";
+							break;
+						}
 					}
-				}
+				});
 			});
 		};
 
@@ -106,11 +121,10 @@
 			re.id = $routeParams.id;
 			re.nombre = $scope.nombre;
 			re.descripcion = $scope.descripcion;
-			re.precio = $scope.precio;
 			re.ingredientes = $scope.ingredientes;
 			re.tipo = "pizza";
-
 			Pizzas.update({ id: $routeParams.id }, re);
+			swal("Registro actualizado!", "El registro se ha actualizado exitosamente", "success");
 		};
 
 
