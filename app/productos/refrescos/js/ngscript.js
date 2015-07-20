@@ -54,6 +54,7 @@
 			$scope.nombre = "";
 			$scope.descripcion = "";
 			$scope.precio = "";
+			$scope.nuevoForm.$setUntouched();
 			
 		}
 	})
