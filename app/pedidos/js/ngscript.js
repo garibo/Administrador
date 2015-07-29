@@ -70,6 +70,59 @@
                 scope.$emit('onRepeatLast', element, attrs);
             }, 1);
         };
-    });
+    })
+
+    .directive('mapa', function() {
+	  return {
+	    restrict: 'E',
+	    templateUrl: 'mapa.html',
+	    controller: function() {
+
+	    },
+	    scope: {
+            latitud: '@',
+            longitud: '@'
+        },
+	    link: function(scope, iElement, iAttrs){
+	    
+	    console.log(scope.latitud); 
+        console.log(scope.longitud);
+
+        var styles = [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}];
+
+	  	var styledMap = new google.maps.StyledMapType(styles,{name: "Lázaro Cárdenas"});
+
+	    var myCenter=new google.maps.LatLng(scope.latitud,scope.longitud);
+		var mapProp = {
+		  center:myCenter,
+		  zoom:18,
+		  streetViewControl:false,
+		  panControl:false,
+		  zoomControlOptions: {
+		      style:google.maps.ZoomControlStyle.SMALL
+		    },
+		  mapTypeControlOptions: {
+	  	    mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+	 	   }
+		  };
+
+		var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+		var marker=new google.maps.Marker({
+		  position:myCenter,
+		});
+
+		marker.setMap(map);
+		map.mapTypes.set('map_style', styledMap);
+  		map.setMapTypeId('map_style');
+
+		var infowindow = new google.maps.InfoWindow({
+		  content:"Aqui ordenaron la pizza"
+		});
+		infowindow.open(map,marker);
+	    },
+	    controllerAs: 'mapaCtrl'
+	  };
+	});
 
 })();
