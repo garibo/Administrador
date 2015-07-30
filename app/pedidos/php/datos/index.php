@@ -36,7 +36,9 @@
 		telefonos.telefono,
 
 		pedidos.hora,
-		pedidos.fecha
+		pedidos.fecha,
+		pedidos.latitud,
+		pedidos.longitud
 
 		FROM pedidos 
 
@@ -62,7 +64,9 @@
 				'repartidor' => $fila['repartidor'],
 				'telefono' => $fila['telefono'],
 				'hora' => $fila['hora'],
-				'fecha' => $fila['fecha']
+				'fecha' => $fila['fecha'],
+				'latitud' => $fila['latitud'],
+				'longitud' => $fila['longitud']
 				);
 			$i++;
 		}

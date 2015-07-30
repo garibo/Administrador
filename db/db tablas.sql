@@ -74,6 +74,8 @@ CREATE TABLE pedidos
 	estado_pedido		varchar(35) 			character set utf8 collate utf8_spanish_ci,
 	fecha				date,
 	hora				time,
+	latitud				decimal(10,7),
+	longitud			decimal(10,7),
 	PRIMARY KEY (id),
 	FOREIGN KEY (id_cliente) REFERENCES clientes (id),
 	FOREIGN KEY (id_direccion) REFERENCES direcciones (id),

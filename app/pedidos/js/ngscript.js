@@ -84,14 +84,11 @@
             longitud: '@'
         },
 	    link: function(scope, iElement, iAttrs){
-	    
-	    console.log(scope.latitud); 
-        console.log(scope.longitud);
+	    iniciar();
+	    function iniciar(){
 
-        var styles = [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}];
-
-	  	var styledMap = new google.maps.StyledMapType(styles,{name: "Lázaro Cárdenas"});
-
+	    var styles = [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}];
+		var styledMap = new google.maps.StyledMapType(styles,{name: "Lázaro Cárdenas"});
 	    var myCenter=new google.maps.LatLng(scope.latitud,scope.longitud);
 		var mapProp = {
 		  center:myCenter,
@@ -107,7 +104,6 @@
 		  };
 
 		var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
 		var marker=new google.maps.Marker({
 		  position:myCenter,
 		});
@@ -120,6 +116,12 @@
 		  content:"Aqui ordenaron la pizza"
 		});
 		infowindow.open(map,marker);
+	    }
+
+		scope.$watch('latitud', function(newValue, oldValue) { 
+            iniciar();
+        });
+
 	    },
 	    controllerAs: 'mapaCtrl'
 	  };
