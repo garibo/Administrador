@@ -7,7 +7,8 @@ FROM pedidos
 	LEFT JOIN direcciones
 ON pedidos.id_cliente = direcciones.id_cliente
 	LEFT JOIN clientes
-ON pedidos.id_cliente = clientes.id;
+ON pedidos.id_cliente = clientes.id
+ORDER BY pedidos.id DESC;
 
 
 
