@@ -8,17 +8,16 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="images/favicon.png">
 
-    <title>Otros Platillos</title>
+    <title>Ajustes</title>
 
     <!--Core CSS -->
-    <link href="../../../assets/bs3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../../assets/css/bootstrap-reset.css" rel="stylesheet">
-    <link href="../../../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="../../../assets/sweetalert/dist/sweetalert.css">
+    <link href="../../assets/bs3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/css/bootstrap-reset.css" rel="stylesheet">
+    <link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
-    <link href="../../../assets/css/style.css" rel="stylesheet">
-    <link href="../../../assets/css/style-responsive.css" rel="stylesheet" />
+    <link href="../../assets/css/style.css" rel="stylesheet">
+    <link href="../../assets/css/style-responsive.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -32,7 +31,7 @@
     <![endif]-->
 </head>
 
-<body ng-app="otrosApp">
+<body ng-app="ajustesApp">
 
 <section id="container" >
 <!--header start-->
@@ -41,7 +40,7 @@
 <div class="brand">
 
     <a href="index.html" class="logo">
-        <!-- <img src="../../../assets/images/logo.png" alt=""> -->
+        <!-- <img src="../../assets/images/logo.png" alt=""> -->
     </a>
     <div class="sidebar-toggle-box">
         <div class="fa fa-bars"></div>
@@ -65,7 +64,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <span class="photo"><img alt="avatar" src="../../../assets/images/avatar-mini.jpg"></span>
+                        <span class="photo"><img alt="avatar" src="../../assets/images/avatar-mini.jpg"></span>
                                 <span class="subject">
                                 <span class="from">Jonathan Smith</span>
                                 <span class="time">Just now</span>
@@ -77,7 +76,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <span class="photo"><img alt="avatar" src="../../../assets/images/avatar-mini-2.jpg"></span>
+                        <span class="photo"><img alt="avatar" src="../../assets/images/avatar-mini-2.jpg"></span>
                                 <span class="subject">
                                 <span class="from">Jane Doe</span>
                                 <span class="time">2 min ago</span>
@@ -89,7 +88,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <span class="photo"><img alt="avatar" src="../../../assets/images/avatar-mini-3.jpg"></span>
+                        <span class="photo"><img alt="avatar" src="../../assets/images/avatar-mini-3.jpg"></span>
                                 <span class="subject">
                                 <span class="from">Tasi sam</span>
                                 <span class="time">2 days ago</span>
@@ -101,7 +100,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <span class="photo"><img alt="avatar" src="../../../assets/images/avatar-mini.jpg"></span>
+                        <span class="photo"><img alt="avatar" src="../../assets/images/avatar-mini.jpg"></span>
                                 <span class="subject">
                                 <span class="from">Mr. Perfect</span>
                                 <span class="time">2 hour ago</span>
@@ -128,7 +127,7 @@
         <!-- user login dropdown start-->
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="">
-                <img alt="" src="../../../assets/images/avatar1_small.jpg">
+                <img alt="" src="../../assets/images/avatar1_small.jpg">
                 <span class="username">Kevin Garibo</span>
                 <b class="caret"></b>
             </a>
@@ -162,7 +161,7 @@
             </li>
             
             <li>
-                <a href="../../pedidos">
+                <a href="../pedidos">
                     <i class="fa fa-cart-plus"></i>
                     <span>Pedidos</span>
                 </a>
@@ -174,28 +173,28 @@
                     <span>Productos</span>
                 </a>
                 <ul class="sub">
-                    <li><a href="../pizzas">Pizzas</a></li>
-                    <li><a class="active" href="">Otros platillos</a></li>
-                    <li><a href="../refrescos">Refrescos</a></li>
+                    <li><a href="../productos/pizzas">Pizzas</a></li>
+                    <li><a href="../productos/otros">Otros platillos</a></li>
+                    <li><a href="../productos/refrescos">Refrescos</a></li>
                 </ul>
             </li>
 
             <li>
-                <a href="../../repartidores">
+                <a href="../repartidores">
                     <i class="fa fa-motorcycle"></i>
                     <span>Repartidores</span>
                 </a>
             </li>
 
             <li>
-                <a href="../../clientes">
+                <a href="../clientes" >
                     <i class="fa fa-users"></i>
                     <span>Clientes</span>
                 </a>
             </li>
 
             <li>
-                <a href="../../ajustes">
+                <a href="" class="active">
                     <i class="fa fa-gears"></i>
                     <span>Ajustes</span>
                 </a>
@@ -229,23 +228,94 @@
         <div class="row">
             <div class="col-sm-12">
 
-        <div class="row" >
-            <div class="col-sm-12">
-                <section class="panel">
-                    <header class="panel-heading">
-                        Otros platillos
-                        <span class="tools pull-right">
-                            <a href="javascript:;" class="fa fa-chevron-down"></a>
-                            <a href="javascript:;" class="fa fa-cog"></a>
-                            <a href="javascript:;" class="fa fa-times"></a>
-                         </span>
-                    </header>
-                    <div class="panel-body">
-                        <ng-view></ng-view>  
+
+        <aside class="profile-nav alt"  ng-controller="preciosCtrl">
+            <section class="panel">
+                <div class="user-heading alt gray-bg">
+                    <a href="#">
+                        <img alt="" src="../../assets/images/productos/pizza.png">
+                    </a>
+                    <h1>Pizzas</h1>
+                    <p>Configurar precios de pizzas</p>
+                </div>
+                <ul class="nav nav-pills nav-stacked">
+                    <li ng-repeat="precio in precios" ng-click="editar(precio)">
+                        <a href="" data-toggle="modal" data-target="#myModal"> 
+                            {{precio.nombre | capitalize}} <span class="badge label-success pull-right r-activity"
+                            ng-class="{ 'label-warning' : precio.id > 3, 'label-danger' : precio.id > 5}">{{precio.precio | currency}}</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </section>
+
+                        <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Cambiar precio</h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group ">
+                        <label for="cname" class="control-label col-lg-3">{{mNombre | capitalize}} : </label>
+                        <div class="col-lg-6">
+                            <input class=" form-control" id="cname" name="name" minlength="2" type="text" required ng-model="mPrecio"/>
+                        </div>
                     </div>
-                </section>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" ng-click="cambiar()">Guardar cambios</button>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
+        </aside>
+
+        <section class="panel">
+            <div class="twt-feed blue-bg">
+                <a href="#">
+                    <img alt="" src="../../assets/images/lock_thumb.jpg">
+                </a>
+                <h1>Andrea Mercado</h1>
+                <p>admin@pizzeriayes.com</p>
+
+            </div>
+                                <div class=" form" style="margin: 25px 0px 25px 0px;">
+                                <form class="cmxform form-horizontal " id="commentForm" method="get" action="">
+                                    <div class="form-group ">
+                                        <label for="cname" class="control-label col-lg-3">Contraseña actual</label>
+                                        <div class="col-lg-6">
+                                            <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="cemail" class="control-label col-lg-3">Nueva contrseña</label>
+                                        <div class="col-lg-6">
+                                            <input class="form-control " id="cemail" type="email" name="email" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="curl" class="control-label col-lg-3">Repetir contraseña</label>
+                                        <div class="col-lg-6">
+                                            <input class="form-control " id="curl" type="url" name="url" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-3 col-lg-6">
+                                            <button class="btn btn-primary" type="submit">Cambiar contraseña</button>
+                                            <button class="btn btn-default" type="button">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <br>
+                            </div>
+
+    
+        </section>
 
                 
             </div>
@@ -345,33 +415,33 @@
 
 </section>
 
+
+
 <!-- Placed js at the end of the document so the pages load faster -->
 
 <!--Core js-->
-<script src="../../../assets/js/jquery.js"></script>
-<script src="../../../assets/bs3/js/bootstrap.min.js"></script>
-<script class="include" type="text/javascript" src="../../../assets/js/jquery.dcjqaccordion.2.7.js"></script>
-<script src="../../../assets/js/jquery.scrollTo.min.js"></script>
-<script src="../../../assets/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
-<script src="../../../assets/js/jquery.nicescroll.js"></script>
+<script src="../../assets/js/jquery.js"></script>
+<script src="../../assets/bs3/js/bootstrap.min.js"></script>
+<script class="include" type="text/javascript" src="../../assets/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="../../assets/js/jquery.scrollTo.min.js"></script>
+<script src="../../assets/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
+<script src="../../assets/js/jquery.nicescroll.js"></script>
 <!--Easy Pie Chart-->
-<script src="../../../assets/js/easypiechart/jquery.easypiechart.js"></script>
+<script src="../../assets/js/easypiechart/jquery.easypiechart.js"></script>
 <!--Sparkline Chart-->
-<script src="../../../assets/js/sparkline/jquery.sparkline.js"></script>
+<script src="../../assets/js/sparkline/jquery.sparkline.js"></script>
 <!--jQuery Flot Chart-->
-<script src="../../../assets/js/flot-chart/jquery.flot.js"></script>
-<script src="../../../assets/js/flot-chart/jquery.flot.tooltip.min.js"></script>
-<script src="../../../assets/js/flot-chart/jquery.flot.resize.js"></script>
-<script src="../../../assets/js/flot-chart/jquery.flot.pie.resize.js"></script>
-<script type="text/javascript" src="../../../assets/sweetalert/dist/sweetalert.min.js"></script>
+<script src="../../assets/js/flot-chart/jquery.flot.js"></script>
+<script src="../../assets/js/flot-chart/jquery.flot.tooltip.min.js"></script>
+<script src="../../assets/js/flot-chart/jquery.flot.resize.js"></script>
+<script src="../../assets/js/flot-chart/jquery.flot.pie.resize.js"></script>
 
 
 <!--common script init for all pages-->
-<script src="../../../assets/js/scripts.js"></script>
-<script type="text/javascript" src="../../../assets/js/angularjs/angular.min.js"></script>
-<script type="text/javascript" src="../../../assets/js/angularjs/angular-route.min.js"></script>
-<script type="text/javascript" src="../../../assets/js/angularjs/angular-resource.min.js"></script>
-<script type="text/javascript" src="../../../assets/js/angularjs/angular-messages.min.js"></script>
+<script src="../../assets/js/scripts.js"></script>
+<script type="text/javascript" src="../../assets/js/angularjs/angular.min.js"></script>
+<script type="text/javascript" src="../../assets/js/angularjs/angular-route.min.js"></script>
+<script type="text/javascript" src="../../assets/js/angularjs/angular-resource.min.js"></script>
 <script type="text/javascript" src="js/ngscript.js"></script>
 
 </body>

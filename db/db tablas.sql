@@ -95,3 +95,10 @@ CREATE TABLE pedidos_linea
 	FOREIGN KEY (id_pedido) REFERENCES pedidos (id)
 );
 
+CREATE TABLE precios_pizzas
+(
+	id 					int  					not null auto_increment,
+	nombre 				varchar(35) 			character set utf8 collate utf8_spanish_ci,
+	precio				numeric(15,2),
+	PRIMARY KEY (id)
+);
