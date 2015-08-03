@@ -85,18 +85,23 @@
 	{
 		Contras.Cambiar($scope.contra, $scope.contran, $scope.contrann)
 		.then(function(data) {
-            // promise fulfilled
             if (data.respuesta === 'bien') {
-                alert("Mamalon");
+                swal("Contraseña cambiada!", "La contraseña ha sido cambiada exitosamente", "success");
+            	$scope.cancelar();
             } else {
-                alert("valio chile");
-                // prepareSundayRoastDinner();
+                sweetAlert("Oops...", "Verifica que los campos sean correctos!", "error");
             }
         }, function(error) {
-            // promise rejected, could log the error with: console.log('error', error);
-            // prepareSundayRoastDinner();
-            alert("Todo se fue a la mierda");
+            sweetAlert("Oops...", "ocurrio un error, intenta recargar la pagina!", "error");
         });
+	}
+
+	$scope.cancelar = function()
+	{
+		$scope.contra = ""; 
+    	$scope.contran = ""; 
+    	$scope.contrann = "";
+        $scope.passwordForm.$setUntouched();
 	}
 	});
 })();

@@ -55,16 +55,16 @@
 			$i++;
 		}
 
-		if($datos[0]["pass"] == $contra)
+		if($datos[0]["pass"] == $contra && $contrann == $contran)
 		{
-			$data = $contran;
 			$public_key = openssl_get_publickey(file_get_contents('public.pem'));
+			$data = $contrann;
 			$encrypted = $e = NULL;
 			openssl_seal($data, $encrypted, $e, array($public_key));
 			$sealed_data = base64_encode($encrypted);
 			$envelope = base64_encode($e[0]);
 
-			$peticion = "UPDATE usuarios SET passwords = '$sealed_data ', passworde = '$envelope '  WHERE id = 0";
+			$peticion = "UPDATE usuarios SET passwords = '$sealed_data ', passworde = '$envelope'  WHERE id = 1";
 			mysql_query($peticion);
 
 			$respuesta[0] = array(
