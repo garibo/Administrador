@@ -19,6 +19,7 @@
     <link href="../../assets/css/style.css" rel="stylesheet">
     <link href="../../assets/css/style-responsive.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/sweetalert/dist/sweetalert.css">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]>
@@ -267,7 +268,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" ng-click="cambiar()">Guardar cambios</button>
+                    <button type="button" class="btn btn-primary" ng-click="cambiar()" ng-disabled="mPrecio == aux">Guardar cambios</button>
                   </div>
                 </div>
               </div>
@@ -283,36 +284,60 @@
                 <p>admin@pizzeriayes.com</p>
 
             </div>
-                                <div class=" form" style="margin: 25px 0px 25px 0px;">
-                                <form class="cmxform form-horizontal " id="commentForm" method="get" action="">
-                                    <div class="form-group ">
-                                        <label for="cname" class="control-label col-lg-3">Contraseña actual</label>
-                                        <div class="col-lg-6">
-                                            <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="cemail" class="control-label col-lg-3">Nueva contrseña</label>
-                                        <div class="col-lg-6">
-                                            <input class="form-control " id="cemail" type="email" name="email" required />
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="curl" class="control-label col-lg-3">Repetir contraseña</label>
-                                        <div class="col-lg-6">
-                                            <input class="form-control " id="curl" type="url" name="url" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-lg-offset-3 col-lg-6">
-                                            <button class="btn btn-primary" type="submit">Cambiar contraseña</button>
-                                            <button class="btn btn-default" type="button">Cancelar</button>
-                                        </div>
-                                    </div>
-                                </form>
-
-                                <br>
+            <div class=" form" style="padding-left:35px; padding-right:35px; margin-top:35px" ng-controller="contraCtrl">
+                <form class="cmxform form-horizontal " name="passwordForm" ng-submit="cambiarContra()">
+                    <div class="form-group " ng-class="{ 'has-error': passwordForm.contraActual.$touched && passwordForm.contraActual.$invalid }">
+                        <label for="cname" class="control-label col-lg-3">Contraseña actual</label>
+                        <div class="col-lg-6">
+                            <input class="form-control " type="password"
+                            name="contraActual"
+                            ng-model="contra" 
+                            ng-maxlength="15" 
+                            required />
+                            <div class="help-block" ng-messages="passwordForm.contraActual.$error" ng-if="passwordForm.contraActual.$touched">
+                              <p ng-message="maxlength">El campo es muy largo.</p>
+                              <p ng-message="required">El campo es requerido.</p>
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group " ng-class="{ 'has-error': passwordForm.contraNueva.$touched && passwordForm.contraNueva.$invalid }">
+                        <label for="cemail" class="control-label col-lg-3">Nueva contrseña</label>
+                        <div class="col-lg-6">
+                            <input class="form-control " type="password" 
+                            name="contraNueva"
+                            ng-model="contran"
+                            ng-maxlength="15" 
+                            required />
+                            <div class="help-block" ng-messages="passwordForm.contraNueva.$error" ng-if="passwordForm.contraNueva.$touched">
+                              <p ng-message="maxlength">El campo es muy largo.</p>
+                              <p ng-message="required">El campo es requerido.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group " ng-class="{ 'has-error': passwordForm.contraNuevaOtra.$touched && passwordForm.contraNuevaOtra.$invalid }">
+                        <label for="curl" class="control-label col-lg-3">Repetir contraseña</label>
+                        <div class="col-lg-6">
+                            <input class="form-control " type="password"
+                            name="contraNuevaOtra"
+                            ng-model="contrann"
+                            ng-maxlength="15" 
+                            required/>
+                            <div class="help-block" ng-messages="passwordForm.contraNuevaOtra.$error" ng-if="passwordForm.contraNuevaOtra.$touched">
+                              <p ng-message="maxlength">El campo es muy largo.</p>
+                              <p ng-message="required">El campo es requerido.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-3 col-lg-6">
+                            <button class="btn btn-primary" type="submit" ng-disabled="passwordForm.$invalid">Cambiar contraseña</button>
+                            <button class="btn btn-default" type="button">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+
+                <br>
+            </div>
 
     
         </section>
@@ -435,13 +460,14 @@
 <script src="../../assets/js/flot-chart/jquery.flot.tooltip.min.js"></script>
 <script src="../../assets/js/flot-chart/jquery.flot.resize.js"></script>
 <script src="../../assets/js/flot-chart/jquery.flot.pie.resize.js"></script>
-
+<script type="text/javascript" src="../../assets/sweetalert/dist/sweetalert.min.js"></script>
 
 <!--common script init for all pages-->
 <script src="../../assets/js/scripts.js"></script>
 <script type="text/javascript" src="../../assets/js/angularjs/angular.min.js"></script>
 <script type="text/javascript" src="../../assets/js/angularjs/angular-route.min.js"></script>
 <script type="text/javascript" src="../../assets/js/angularjs/angular-resource.min.js"></script>
+<script type="text/javascript" src="../../assets/js/angularjs/angular-messages.min.js"></script>
 <script type="text/javascript" src="js/ngscript.js"></script>
 
 </body>

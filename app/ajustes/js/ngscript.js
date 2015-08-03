@@ -1,6 +1,6 @@
 (function(){
 
-	angular.module('ajustesApp', ['ngResource'])
+	angular.module('ajustesApp', ['ngResource', 'ngMessages'])
 
 
 	.factory('Precios',function($resource){
@@ -9,6 +9,36 @@
 			},{
 			'update': { method:'PUT' }
 		});
+	})
+
+
+	.factory('Contras', function ($http, $q) {
+	    return {
+	        Cambiar: function(contra, contran, contrann) {
+	            return $http({
+						method: "POST",
+						url: "http://localhost/administrador/app/ajustes/php/atnt/api/",
+						data: {
+							"contra" 	: contra,
+							"contran" 	: contran,
+							"contrann" 	: contrann
+						},
+						headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+						})
+						.then(function(response) {
+			                if (typeof response.data === 'object') {
+			                    return response.data;
+			                } else {
+			                    // invalid response
+			                    return $q.reject(response.data);
+			                }
+
+			            }, function(response) {
+			                // something went wrong
+			                return $q.reject(response.data);
+			            });
+	        }
+	    };
 	})
 
 	.filter('capitalize', function() {
@@ -25,6 +55,7 @@
 		var record = new Precios();
 		$scope.mNombre = "";
 		$scope.mPrecio = 0;
+		$scope.aux = 0;
 		$scope.editar = function(precio)
 		{
 			$scope.mNombre = precio.nombre;
@@ -32,17 +63,40 @@
 			record.id = precio.id;
 			record.nombre = precio.nombre;
 			record.precio = precio.precio;
+			$scope.aux = precio.precio;
 		}
 
 		$scope.cambiar = function()
 		{
+			$('#myModal').modal('hide');
 			record.precio = $scope.mPrecio;
 			Precios.update({ id: record.id }, record);
-			$('#myModal').modal('hide');
 			$scope.precios[record.id-1].precio = $scope.mPrecio;
+			swal("Precio cambiado!", "El precio ha sido cambiado exitosamente", "success");
 		}
 
 
-	});
+	})
 
+	.controller('contraCtrl', function($scope, Contras) 
+	{
+
+	$scope.cambiarContra = function()
+	{
+		Contras.Cambiar($scope.contra, $scope.contran, $scope.contrann)
+		.then(function(data) {
+            // promise fulfilled
+            if (data.respuesta === 'bien') {
+                alert("Mamalon");
+            } else {
+                alert("valio chile");
+                // prepareSundayRoastDinner();
+            }
+        }, function(error) {
+            // promise rejected, could log the error with: console.log('error', error);
+            // prepareSundayRoastDinner();
+            alert("Todo se fue a la mierda");
+        });
+	}
+	});
 })();
