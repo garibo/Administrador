@@ -89,7 +89,7 @@ CREATE TABLE pedidos_linea
 	id_producto			int,
 	id_pedido			int,
 	cantidad			int,
-	total				numeric(15,2),
+	tamano 				int,
 	PRIMARY KEY (id),
 	FOREIGN KEY (id_producto) REFERENCES productos (id),
 	FOREIGN KEY (id_pedido) REFERENCES pedidos (id)

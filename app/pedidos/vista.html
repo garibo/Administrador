@@ -47,14 +47,14 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="producto in productos">
-                                <td>{{producto.nombre}}</td>
-                                <td >{{producto.ingredientes}}</td>
-                                <td>{{producto.tamano}}</td>
-                                <td>{{producto.precio | currency}}</td>
-                                <td>{{producto.cantidad}}</td>
-                                <td>{{producto.total | currency}}</td>
-                            </tr>
+<tr ng-repeat="producto in productos">
+    <td>{{producto.nombre}}</td>
+    <td >{{producto.ingredientes}}</td>
+    <td>{{((producto.nombre_tamano == null) && "Regular" || !(producto.nombre_tamano == null) && (producto.nombre_tamano | capitalize) )}}</td>
+    <td>{{((producto.precio_pizza == null) && producto.precio || !(producto.precio_pizza == null) && producto.precio_pizza) | currency }}</td>
+    <td>{{producto.cantidad}}</td>
+    <td>{{(((producto.precio_pizza == null) && producto.precio || !(producto.precio_pizza == null) && producto.precio_pizza) * producto.cantidad) | currency }}</td>
+</tr>
                             </tbody>
                         </table>
         </div>

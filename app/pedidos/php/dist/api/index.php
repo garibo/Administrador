@@ -8,7 +8,7 @@
 
 	$conect = new CONEXION();
 	mysql_set_charset('utf8');
-
+	$respuesta = array();
 	$postdata = file_get_contents("php://input");
 	$request = json_decode($postdata);
 
@@ -29,16 +29,28 @@
 
 
 	if (!$resultPedidos) {
-     mysql_error();
+     // mysql_error();
+     $respuesta[0] = array(
+		'respuesta' => "mal"
+	);
+	$send = json_encode($respuesta[0]);
+	echo $send;
    } 
    else{
    	$id_pedido = mysql_insert_id();
    	$queryPedidosLinea = "";
    	for ($i = 0; $i < count($productos); $i++){ 
-   		mysql_query("INSERT INTO pedidos_linea (id_producto, id_pedido, cantidad) VALUES (".$productos[$i]['id_producto'].", $id_pedido, 1)");
+   		$tamano = $productos[$i]['tamano'] < 1 || $productos[$i]['tamano'] > 6 ? 0 : $productos[$i]['tamano'];
+   		mysql_query("INSERT INTO pedidos_linea (id_producto, id_pedido, cantidad, tamano) VALUES (".$productos[$i]['id_producto'].", $id_pedido, 1, $tamano)");
    	}
 
-   }
-	
+   	$respuesta[0] = array(
+	'respuesta' => "bien"
+	);
+	$send = json_encode($respuesta[0]);
+	echo $send;
 
+   }
+   	
+	
  ?>

@@ -24,14 +24,17 @@
 
 		productos.nombre,
 		productos.ingredientes,
-		productos.tamano,
 		productos.precio,
+		precios_pizzas.precio AS precio_pizza,
+		precios_pizzas.nombre AS nombre_tamano,
 		pedidos_linea.cantidad
 
 		FROM pedidos_linea
 
-		INNER JOIN productos
+		LEFT JOIN precios_pizzas
+		ON precios_pizzas.id = pedidos_linea.tamano
 
+		INNER JOIN productos
 		ON pedidos_linea.id_producto = productos.id
 
 		WHERE pedidos_linea.id_pedido = $parametro";
@@ -43,10 +46,10 @@
 			$datos[$i] = array(
 				'nombre' => $fila['nombre'],
 				'ingredientes' => $fila['ingredientes'],
-				'tamano' => $fila['tamano'],
 				'precio' => $fila['precio'],
-				'cantidad' => $fila['cantidad'],
-				'total' => ($fila['precio'] * $fila['cantidad'])
+				'precio_pizza' => $fila['precio_pizza'],
+				'nombre_tamano' => $fila['nombre_tamano'],
+				'cantidad' => $fila['cantidad']
 				);
 			$i++;
 		}
