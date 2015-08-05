@@ -35,28 +35,41 @@
             </div>
         </div>
         <div class="view-mail">
-            <table class="table  table-hover general-table">
-                            <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Ingredientes</th>
-                                <th>Tamaño</th>
-                                <th>Precio</th>
-                                <th>Cantidad</th>
-                                <th>Subtotal</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-<tr ng-repeat="producto in productos">
-    <td>{{producto.nombre}}</td>
-    <td >{{producto.ingredientes}}</td>
-    <td>{{((producto.nombre_tamano == null) && "Regular" || !(producto.nombre_tamano == null) && (producto.nombre_tamano | capitalize) )}}</td>
-    <td>{{((producto.precio_pizza == null) && producto.precio || !(producto.precio_pizza == null) && producto.precio_pizza) | currency }}</td>
-    <td>{{producto.cantidad}}</td>
-    <td>{{(((producto.precio_pizza == null) && producto.precio || !(producto.precio_pizza == null) && producto.precio_pizza) * producto.cantidad) | currency }}</td>
-</tr>
-                            </tbody>
-                        </table>
+            <table class="table table-invoice" >
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th class="text-center">Tamaño</th>
+                    <th class="text-center">Precio</th>
+                    <th class="text-center">Cantidad</th>
+                    <th class="text-center">Subtotal</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="producto in productos">
+                    <td>{{$index + 1}}</td>
+                    <td>
+                        <h4>{{producto.nombre}}</h4>
+                        <p>{{producto.ingredientes}}</p>
+                    </td>
+                    <td class="text-center">{{((producto.nombre_tamano == null) && "Regular" || !(producto.nombre_tamano == null) && (producto.nombre_tamano | capitalize) )}}</td>
+                    <td class="text-center">{{((producto.precio_pizza == null) && producto.precio || !(producto.precio_pizza == null) && producto.precio_pizza) | currency }}</td>
+                    <td class="text-center">{{producto.cantidad}}</td>
+                    <td class="text-center">{{(((producto.precio_pizza == null) && producto.precio || !(producto.precio_pizza == null) && producto.precio_pizza) * producto.cantidad) | currency }}</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-md-8 col-xs-7 payment-method">
+
+                </div>
+                <div class="col-md-4 col-xs-5 invoice-block pull-right">
+                    <ul class="unstyled amounts">
+                        <li class="grand-total">Total : $345.00</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="attachment-mail">
