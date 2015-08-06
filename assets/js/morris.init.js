@@ -1,42 +1,42 @@
-Morris.Bar({
-    element: 'graph-bar',
-    data: [
-        {x: '2011 Q1', y: 3, z: 2, a: 3},
-        {x: '2011 Q2', y: 2, z: null, a: 1},
-        {x: '2011 Q3', y: 0, z: 2, a: 4},
-        {x: '2011 Q4', y: 2, z: 4, a: 3}
-    ],
-    xkey: 'x',
-    ykeys: ['y', 'z', 'a'],
-    labels: ['Y', 'Z', 'A'],
-    barColors:['#E67A77','#D9DD81','#79D1CF']
+// Morris.Bar({
+//     element: 'graph-bar',
+//     data: [
+//         {x: '2011 Q1', y: 3, z: 2, a: 3},
+//         {x: '2011 Q2', y: 2, z: null, a: 1},
+//         {x: '2011 Q3', y: 0, z: 2, a: 4},
+//         {x: '2011 Q4', y: 2, z: 4, a: 3}
+//     ],
+//     xkey: 'x',
+//     ykeys: ['y', 'z', 'a'],
+//     labels: ['Y', 'Z', 'A'],
+//     barColors:['#E67A77','#D9DD81','#79D1CF']
 
 
-});
+// });
 
 
 
-var day_data = [
-    {"elapsed": "I", "value": 34},
-    {"elapsed": "II", "value": 24},
-    {"elapsed": "III", "value": 3},
-    {"elapsed": "IV", "value": 12},
-    {"elapsed": "V", "value": 13},
-    {"elapsed": "VI", "value": 22},
-    {"elapsed": "VII", "value": 5},
-    {"elapsed": "VIII", "value": 26},
-    {"elapsed": "IX", "value": 12},
-    {"elapsed": "X", "value": 19}
-];
-Morris.Line({
-    element: 'graph-line',
-    data: day_data,
-    xkey: 'elapsed',
-    ykeys: ['value'],
-    labels: ['value'],
-    lineColors:['#1FB5AD'],
-    parseTime: false
-});
+// var day_data = [
+//     {"elapsed": "I", "value": 34},
+//     {"elapsed": "II", "value": 24},
+//     {"elapsed": "III", "value": 3},
+//     {"elapsed": "IV", "value": 12},
+//     {"elapsed": "V", "value": 13},
+//     {"elapsed": "VI", "value": 22},
+//     {"elapsed": "VII", "value": 5},
+//     {"elapsed": "VIII", "value": 26},
+//     {"elapsed": "IX", "value": 12},
+//     {"elapsed": "X", "value": 19}
+// ];
+// Morris.Line({
+//     element: 'graph-line',
+//     data: day_data,
+//     xkey: 'elapsed',
+//     ykeys: ['value'],
+//     labels: ['value'],
+//     lineColors:['#1FB5AD'],
+//     parseTime: false
+// });
 
 
 
