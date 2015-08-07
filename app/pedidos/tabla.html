@@ -71,13 +71,13 @@
         <div class="table-inbox-wrap ">
             <table class="table table-inbox table-hover">
         <tbody>
-        <tr class="" ng-repeat="pedido in pedidos  | filter:query" on-last-repeat>
+        <tr ng-class="{unread: {{pedido.visto}}}" ng-repeat="pedido in pedidos  | filter:query" on-last-repeat>
             <td class="inbox-small-cells">
                 <input type="checkbox" class="mail-checkbox">
             </td>
-            <td class="inbox-small-cells"><i class="fa fa-star"></i></td>
-            <td class="view-message dont-show"><a ng-href="#/vista/{{pedido.id}}">{{pedido.nombre}}</a></td>
-            <td class="view-message"><a ng-href="#/vista/{{pedido.id}}">{{pedido.direccion}}</a></td>
+            <td class="inbox-small-cells"><i class="fa fa-star " ng-class="{contestado:{{puesto(pedido)}}}" ng-click="cambiar(pedido.id)"></i></td>
+            <td class="view-message dont-show"><a ng-href="#/vista/{{pedido.id}}" ng-click="abrir(pedido.id)">{{pedido.nombre}}</a></td>
+            <td class="view-message"><a ng-href="#/vista/{{pedido.id}}" ng-click="abrir(pedido.id)">{{pedido.direccion}}</a></td>
             <td class="view-message inbox-small-cells"></td>
             <td class="view-message text-right">{{pedido.fecha}}</td>
         </tr>

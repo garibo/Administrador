@@ -28,6 +28,8 @@
 				'nombre' => $fila['nombre'],
 				'direccion' => $fila['direccion'],
 				'fecha' => $fila['fecha'],
+				'visto' => $fila['visto'],
+				'importante' => $fila['importante'],
 				'hora' => $fila['hora']
 				);
 			$i++;

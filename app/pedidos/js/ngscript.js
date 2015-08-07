@@ -40,9 +40,35 @@
 	};
 	})
 
-	.controller('listaCtrl', function($scope, Listado) 
+	.controller('listaCtrl', function($scope, Listado, $http) 
 	{
 		$scope.pedidos = Listado.query();
+
+		$scope.abrir = function(pid)
+		{
+			$http({
+		      method: 'POST',
+		      data: {'id': pid},
+		      url: 'http://localhost/administrador/app/pedidos/php/visto/'
+		    });
+		}
+
+		$scope.cambiar = function(id)
+		{
+			for (var i = $scope.pedidos.length - 1; i >= 0; i--) {
+				if(id == $scope.pedidos[i].id)
+				{
+					// $scope.pedidos[i].importante = true;	
+					alert("Encontrado "+$scope.pedidos[i].importante);
+					break;				
+				}
+			};
+		}
+
+		$scope.puesto = function(pedido)
+		{
+			return pedido.importante;
+		}
 
 		$scope.$on('onRepeatLast', function(scope, element, attrs){
 			angular.element('.minimal input').iCheck({
@@ -51,14 +77,6 @@
 				increaseArea: '20%'
 			});
 		});
-	})
-
-	.filter('capitalize', function() {
-	  return function(input, scope) {
-	    if (input!=null)
-	    input = input.toLowerCase();
-	    return input.substring(0,1).toUpperCase()+input.substring(1);
-	  }
 	})
 
 	.controller('vistaCtrl', function($scope, $routeParams, DatosPedido) 
@@ -70,6 +88,14 @@
         DatosPedido.productos($routeParams.id, function(data) {
           $scope.productos = data;
         });
+	})
+	
+	.filter('capitalize', function() {
+	  return function(input, scope) {
+	    if (input!=null)
+	    input = input.toLowerCase();
+	    return input.substring(0,1).toUpperCase()+input.substring(1);
+	  }
 	})
 
 	.directive('onLastRepeat', function() {

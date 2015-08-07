@@ -2,7 +2,7 @@
 -----View para listar los pedidos------
 ---------------------------------------
 CREATE VIEW listapedidos AS
-SELECT pedidos.id, clientes.nombre , CONCAT(direcciones.calle,' #',direcciones.numero,', ',direcciones.colonia) AS direccion,  pedidos.fecha, pedidos.hora
+SELECT pedidos.id, clientes.nombre , CONCAT(direcciones.calle,' #',direcciones.numero,', ',direcciones.colonia) AS direccion,  pedidos.fecha, pedidos.hora, pedidos.visto, pedidos.importante
 FROM pedidos
 	LEFT JOIN direcciones
 ON pedidos.id_cliente = direcciones.id_cliente

@@ -2024,6 +2024,11 @@ ul.labels-info li a i {
 .table-inbox tr td .fa-star {
     color:#d5d5d5;
 }
+
+.table-inbox tr td .fa-star.contestado {
+    color:#f78a09;
+}
+
 .table-inbox tr.unread td {
     font-weight:600;
     background:#f7f7f7;
