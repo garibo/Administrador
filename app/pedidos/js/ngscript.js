@@ -40,17 +40,31 @@
 	};
 	})
 
-	.controller('listaCtrl', function($scope, Listado, $http) 
+	.factory('accionesTabla', function($http){
+	return {
+	  visto: function (id){
+	    $http({
+	      method: 'POST',
+	      data: {'id': id},
+	      url: 'http://localhost/administrador/app/pedidos/php/visto/'
+	    });
+	  },
+	  importante: function(id, importante){
+	    $http({
+	      method: 'POST',
+	      data: {'id': id, 'importante': importante},
+	      url: 'http://localhost/administrador/app/pedidos/php/importante/'
+	    });
+	  }
+	};
+	})
+	.controller('listaCtrl', function($scope, Listado, accionesTabla) 
 	{
 		$scope.pedidos = Listado.query();
 
-		$scope.abrir = function(pid)
+		$scope.abrir = function(id)
 		{
-			$http({
-		      method: 'POST',
-		      data: {'id': pid},
-		      url: 'http://localhost/administrador/app/pedidos/php/visto/'
-		    });
+			accionesTabla.visto(id); 
 		}
 
 		$scope.cambiar = function(id)
@@ -58,16 +72,11 @@
 			for (var i = $scope.pedidos.length - 1; i >= 0; i--) {
 				if(id == $scope.pedidos[i].id)
 				{
-					// $scope.pedidos[i].importante = true;	
-					alert("Encontrado "+$scope.pedidos[i].importante);
+				    accionesTabla.importante(id, $scope.pedidos[i].importante);
+					$scope.pedidos[i].importante = ($scope.pedidos[i].importante == false)	? true : false;
 					break;				
 				}
 			};
-		}
-
-		$scope.puesto = function(pedido)
-		{
-			return pedido.importante;
 		}
 
 		$scope.$on('onRepeatLast', function(scope, element, attrs){
@@ -81,12 +90,16 @@
 
 	.controller('vistaCtrl', function($scope, $routeParams, DatosPedido) 
 	{
+		$scope.total = 0;
 		DatosPedido.datos($routeParams.id, function(data) {
           $scope.datos = data[0];
         });
 
         DatosPedido.productos($routeParams.id, function(data) {
-          $scope.productos = data;
+	      $scope.productos = data;
+			for (var i = 0; i < $scope.productos.length; i++) {
+          		$scope.total += parseFloat($scope.productos[i].precio);
+          	};          
         });
 	})
 	

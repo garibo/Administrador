@@ -1,6 +1,6 @@
 <section class="panel">
     <header class="panel-heading wht-bg">
-       <h4 class="gen-case">Inbox (34)
+       <h4 class="gen-case">Inbox ({{pedidos.length}})
         <form action="#" class="pull-right mail-src-position">
             <div class="input-append">
                 <input type="text" class="form-control " placeholder="Search Mail" ng-model="query">
@@ -75,7 +75,7 @@
             <td class="inbox-small-cells">
                 <input type="checkbox" class="mail-checkbox">
             </td>
-            <td class="inbox-small-cells"><i class="fa fa-star " ng-class="{contestado:{{puesto(pedido)}}}" ng-click="cambiar(pedido.id)"></i></td>
+            <td class="inbox-small-cells"><i class="fa fa-star " ng-class="{contestado: pedido.importante == 1}" ng-click="cambiar(pedido.id)"></i></td>
             <td class="view-message dont-show"><a ng-href="#/vista/{{pedido.id}}" ng-click="abrir(pedido.id)">{{pedido.nombre}}</a></td>
             <td class="view-message"><a ng-href="#/vista/{{pedido.id}}" ng-click="abrir(pedido.id)">{{pedido.direccion}}</a></td>
             <td class="view-message inbox-small-cells"></td>
