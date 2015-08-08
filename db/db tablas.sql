@@ -76,6 +76,8 @@ CREATE TABLE pedidos
 	hora				time,
 	latitud				decimal(10,7),
 	longitud			decimal(10,7),
+	visto  				BOOLEAN 				DEFAULT FALSE,
+	importante  				BOOLEAN 				DEFAULT FALSE,
 	PRIMARY KEY (id),
 	FOREIGN KEY (id_cliente) REFERENCES clientes (id),
 	FOREIGN KEY (id_direccion) REFERENCES direcciones (id),

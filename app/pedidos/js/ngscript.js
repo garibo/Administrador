@@ -14,6 +14,11 @@
 			controller: 'vistaCtrl'
 		}).
 
+		when('/importantes', {
+			templateUrl: 'importantes.html',
+			controller: 'importanteCtrl'
+		}).
+
 		otherwise({
 			redirectTo: '/'
 		});
@@ -21,6 +26,14 @@
 
 	.factory('Listado',function($resource){
 		return $resource('http://localhost/administrador/app/pedidos/php/api/');
+	})
+
+	.factory('Importantes',function($resource){
+		return $resource('http://localhost/administrador/app/pedidos/php/importante/getImportante.php');
+	})
+
+	.factory('NoVisto',function($resource){
+		return $resource('http://localhost/administrador/app/pedidos/php/visto/getVisto.php');
 	})
 
 	.factory('DatosPedido', function($http){
@@ -98,11 +111,59 @@
         DatosPedido.productos($routeParams.id, function(data) {
 	      $scope.productos = data;
 			for (var i = 0; i < $scope.productos.length; i++) {
-          		$scope.total += parseFloat($scope.productos[i].precio);
+          		$scope.total += $scope.productos[i].precio != null ? parseFloat($scope.productos[i].precio)  : 0;
+          		$scope.total += $scope.productos[i].precio_pizza != null ? parseFloat($scope.productos[i].precio_pizza) : 0;
           	};          
         });
 	})
 	
+
+	.controller('tabCtrl', function($scope, NoVisto) 
+	{
+		$scope.vistos = NoVisto.query();
+	    $scope.tab = 1;
+
+	    $scope.isSet = function(checkTab) {
+	      return $scope.tab === checkTab;
+	    };
+
+	    $scope.setTab = function(setTab) {
+	      $scope.tab = setTab;
+	    };
+
+	})
+
+	.controller('importanteCtrl', function($scope, Importantes, accionesTabla) 
+	{
+		$scope.pedidos = Importantes.query();
+
+		$scope.abrir = function(id)
+		{
+			accionesTabla.visto(id); 
+		}
+
+		$scope.cambiar = function(id)
+		{
+			for (var i = $scope.pedidos.length - 1; i >= 0; i--) {
+				if(id == $scope.pedidos[i].id)
+				{
+				    accionesTabla.importante(id, $scope.pedidos[i].importante);
+					$scope.pedidos[i].importante = ($scope.pedidos[i].importante == false)	? true : false;
+					break;				
+				}
+			};
+		}
+
+		$scope.$on('onRepeatLast', function(scope, element, attrs){
+			angular.element('.minimal input').iCheck({
+				checkboxClass: 'icheckbox_minimal',
+				radioClass: 'iradio_minimal',
+				increaseArea: '20%'
+			});
+		});
+	})
+
+
 	.filter('capitalize', function() {
 	  return function(input, scope) {
 	    if (input!=null)
