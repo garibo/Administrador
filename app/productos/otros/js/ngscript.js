@@ -45,8 +45,8 @@
 			record.descripcion = $scope.descripcion;
 			record.precio = $scope.precio;
 			record.ingredientes = $scope.ingredientes;
+			record.imagen_url = $scope.imagen_url;
 			record.tipo = 'otros';
-
 			record.$save(function(response){
             	$scope.otros.push(record);
             	swal("Platillo agregado!", "El registro se ha guardado!", "success");
@@ -56,6 +56,7 @@
 			$scope.descripcion = "";
 			$scope.precio = "";
 			$scope.ingredientes = "";
+			$scope.imagen_url = "";
 			$scope.nuevoForm.$setUntouched();
 			
 		}

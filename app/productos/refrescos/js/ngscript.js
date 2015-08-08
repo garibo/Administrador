@@ -36,7 +36,7 @@
 
 	.controller('nuevoCtrl', function($scope, Refrescos) 
 	{
-		$scope.refrescos = Refrescos.query();;
+		$scope.refrescos = Refrescos.query();
 		$scope.agregar = function()
 		{
 			var record = new Refrescos();
@@ -44,6 +44,7 @@
 			record.nombre = $scope.nombre;
 			record.descripcion = $scope.descripcion;
 			record.precio = $scope.precio;
+			record.imagen_url = $scope.imagen_url;
 			record.tipo = 'refresco';
 
 			record.$save(function(response){
@@ -54,6 +55,7 @@
 			$scope.nombre = "";
 			$scope.descripcion = "";
 			$scope.precio = "";
+			$scope.imagen_url = "";
 			$scope.nuevoForm.$setUntouched();
 			
 		}

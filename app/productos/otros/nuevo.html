@@ -59,6 +59,59 @@
     </div>
   </div>
 
+  <br>
+  <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#myModal"><i class="fa fa-picture-o fa"></i> Escoger imagen</button>
+  <br>
+
+   <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Selecciona una imagen</h4>
+      </div>
+      <div class="modal-body">
+        <select class="image-picker" ng-model="imagen_url" name="imagenes" required>
+            <option data-img-src="../../../assets/images/img-modal/arroz.png" value="arroz.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/asada.png" value="asada.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/brocheta.png" value="brocheta.png">      </option>
+            <option data-img-src="../../../assets/images/img-modal/burrito.png" value="burrito.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/coctel.png" value="coctel.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/comidaChina.png" value="comidaChina.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/dona.png" value="dona.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/hamburguesa.png" value="hamburguesa.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/hotdog.png" value="hotdog.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/huevos.png" value="huevos.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/palomitas.png" value="palomitas.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/papasFritas.png" value="papasFritas.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/pastel.png" value="pastel.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/pastelillo.png" value="pastelillo.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/pescado.png" value="pescado.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/pizza.png" value="pizza.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/queso.png" value="queso.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/salchicha.png" value="salchicha.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/sandwich.png" value="sandwich.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/sushi.png" value="sushi.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/taco.png" value="taco.png">     </option>
+            <option data-img-src="../../../assets/images/img-modal/wafle.png" value="wafle.png">     </option>
+          </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" ng-disabled="!imagen_url">Elegir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+   // Initialize the object
+  $("select").imagepicker();
+  // Retrieve the picker
+  // Initialize the picker once
+    $("select").imagepicker();
+</script>
 
 <center>
 <button type="submit" class="btn btn-info" ng-disabled="nuevoForm.$invalid">Agregar nuevo</button>
