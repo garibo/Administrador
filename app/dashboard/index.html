@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="dashApp">
 <head>
     <meta charset="utf-8">
 
@@ -33,7 +33,7 @@
     <![endif]-->
 </head>
 
-<body ng-app="ajustesApp">
+<body ng-controller="dashCtrl">
 
 <section id="container" >
 <!--header start-->
@@ -235,9 +235,9 @@
                         <div class="profile-nav alt">
                             <section class="panel">
                                 <div class="user-heading alt clock-row terques-bg">
-                                <h1>December 14</h1>
-                                <p class="text-left">2014, Friday</p>
-                                <p class="text-left">7:53 PM</p>
+                                <h1 id="year"></h1>
+                                <p class="text-left" id="month"></p>
+                                <p class="text-left" id="clockDisplay"></p>
                                 </div>
                                 <ul id="clock">
                                 <li id="sec"></li>
@@ -266,8 +266,8 @@
 
                                 <div class="panel-body">
                                     <div class="wdgt-value">
-                                        <h1 class="count">25</h1>
-                                        <p>New Users</p>
+                                        <h1 class="count">{{usuarios.length}}</h1>
+                                        <p>Usuarios</p>
                                     </div>
                                 </div>
 
@@ -282,8 +282,8 @@
 
                                 <div class="panel-body">
                                     <div class="wdgt-value">
-                                        <h1 class="count">295</h1>
-                                        <p>Sales</p>
+                                        <h1 class="count">{{pedidos.length}}</h1>
+                                        <p>Pedidos</p>
                                     </div>
                                 </div>
 
@@ -415,10 +415,29 @@
 <!--common script init for all pages-->
 <script src="../../assets/js/scripts.js"></script>
 <script type="text/javascript" src="../../assets/js/angularjs/angular.min.js"></script>
-<script type="text/javascript" src="../../assets/js/angularjs/angular-route.min.js"></script>
 <script type="text/javascript" src="../../assets/js/angularjs/angular-resource.min.js"></script>
-<script type="text/javascript" src="../../assets/js/angularjs/angular-messages.min.js"></script>
 <script type="text/javascript" src="js/ngscript.js"></script>
+<script type="text/javascript" src="../..//assets/js/moment.min.js"></script>
+<script type="text/javascript" language="javascript">
+function renderTime() {
+    setTimeout('renderTime()',1000);
+    moment.locale('es');
+    var momento = moment().format('h:mm:ss a');
+    var myClock = document.getElementById('clockDisplay');
+    myClock.textContent = momento;
+    myClock.innerText = momento;
 
+    var momento = moment().format('MMMM YYYY');
+    var myYear = document.getElementById('year');
+    myYear.textContent = momento;
+    myYear.innerText = momento;
+
+    var momento = moment().format('YYYY, dddd');
+    var myMonth = document.getElementById('month');
+    myMonth.textContent = momento;
+    myMonth.innerText = momento;
+}
+renderTime();
+</script>
 </body>
 </html>
