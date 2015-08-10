@@ -1,6 +1,6 @@
 <section class="panel">
     <header class="panel-heading wht-bg">
-       <h4 class="gen-case">Inbox ({{pedidos.length}})
+       <h4 class="gen-case">Importantes ({{pedidos.length}})
         <form action="#/" class="pull-right mail-src-position">
             <div class="input-append">
                 <input type="text" class="form-control " placeholder="Search Mail" ng-model="query">
@@ -71,7 +71,7 @@
         <div class="table-inbox-wrap ">
             <table class="table table-inbox table-hover">
         <tbody>
-        <tr ng-class="{unread: {{pedido.visto}}}" ng-repeat="pedido in pedidos  | filter:query" on-last-repeat>
+        <tr ng-class="{unread: pedido.visto == 0}" ng-repeat="pedido in pedidos  | filter:query" on-last-repeat>
             <td class="inbox-small-cells">
                 <input type="checkbox" class="mail-checkbox">
             </td>

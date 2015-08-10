@@ -19,6 +19,11 @@
 			controller: 'importanteCtrl'
 		}).
 
+		when('/eliminados', {
+			templateUrl: 'eliminados.html',
+			controller: 'eliminadoCtrl'
+		}).
+
 		otherwise({
 			redirectTo: '/'
 		});
@@ -30,6 +35,10 @@
 
 	.factory('Importantes',function($resource){
 		return $resource('http://localhost/administrador/app/pedidos/php/importante/getImportante.php');
+	})
+
+	.factory('Eliminado',function($resource){
+		return $resource('http://localhost/administrador/app/pedidos/php/eliminado/getEliminado.php');
 	})
 
 	.factory('NoVisto',function($resource){
@@ -49,6 +58,13 @@
 	      method: 'GET',
 	      url: 'http://localhost/administrador/app/pedidos/php/productos/'+id+''
 	    }).success(callback);
+	  },
+	  borrar: function(id, callback){
+	    $http({
+	      method: 'POST',
+	      data: {'id': id},
+	      url: 'http://localhost/administrador/app/pedidos/php/eliminado/'
+	    });
 	  }
 	};
 	})
@@ -115,6 +131,23 @@
           		$scope.total += $scope.productos[i].precio_pizza != null ? parseFloat($scope.productos[i].precio_pizza) : 0;
           	};          
         });
+
+        $scope.eliminar = function()
+		{
+			swal({   title: "Estas seguro?",   
+				text: "Ya no podras recuperar este pedido",   
+				type: "warning",   
+				showCancelButton: true,   
+				confirmButtonColor: "#DD6B55",  
+				cancelButtonText: "Cancelar!", 
+				confirmButtonText: "Si, Eliminalo!",   
+				closeOnConfirm: false }, 
+				function(){  
+				DatosPedido.borrar($routeParams.id); 
+				swal("Eliminado!", "El pedido ha sido eliminado.", "success"); 
+				document.location.href = "http://localhost/administrador/app/pedidos/#/"
+			});
+		};
 	})
 	
 
@@ -163,6 +196,35 @@
 		});
 	})
 
+	.controller('eliminadoCtrl', function($scope, Eliminado, accionesTabla) 
+	{
+		$scope.pedidos = Eliminado.query();
+
+		$scope.abrir = function(id)
+		{
+			accionesTabla.visto(id); 
+		}
+
+		$scope.cambiar = function(id)
+		{
+			for (var i = $scope.pedidos.length - 1; i >= 0; i--) {
+				if(id == $scope.pedidos[i].id)
+				{
+				    accionesTabla.importante(id, $scope.pedidos[i].importante);
+					$scope.pedidos[i].importante = ($scope.pedidos[i].importante == false)	? true : false;
+					break;				
+				}
+			};
+		}
+
+		$scope.$on('onRepeatLast', function(scope, element, attrs){
+			angular.element('.minimal input').iCheck({
+				checkboxClass: 'icheckbox_minimal',
+				radioClass: 'iradio_minimal',
+				increaseArea: '20%'
+			});
+		});
+	})
 
 	.filter('capitalize', function() {
 	  return function(input, scope) {

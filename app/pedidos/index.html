@@ -23,6 +23,7 @@
     <link href="../../assets/css/style.css" rel="stylesheet">
     <link href="../../assets/css/style-responsive.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../assets/sweetalert/dist/sweetalert.css">
 <!--     <link rel="stylesheet" type="text/css" href="css/style.css">
  -->
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -240,7 +241,7 @@
                             <li ng-class="{ active: isSet(1)}"><a href="#/" ng-click="setTab(1)"> <i class="fa fa-inbox"></i> Inbox  <span class="label label-danger pull-right inbox-notification" ng-show="vistos.length">{{vistos.length}}</span></a></li>
                             <li ng-class="{ active: isSet(2) }"><a href="#/" ng-click="setTab(2)"> <i class="fa fa-envelope-o"></i> Contestados</a></li>
                             <li ng-class="{ active: isSet(3) }"><a href="#/importantes" ng-click="setTab(3)"> <i class="fa fa-certificate"></i> Important</a></li>
-                            <li ng-class="{ active: isSet(4) }"><a href="#/" ng-click="setTab(4)"> <i class="fa fa-trash-o"></i> Eliminados</a></li>
+                            <li ng-class="{ active: isSet(4) }"><a href="#/eliminados" ng-click="setTab(4)"> <i class="fa fa-trash-o"></i> Eliminados</a></li>
                         </ul>
                     </div>
                 </section>
@@ -370,6 +371,7 @@
 
 <!--common script init for all pages-->
 <script src="../../assets/js/scripts.js"></script>
+<script type="text/javascript" src="../../assets/sweetalert/dist/sweetalert.min.js"></script>
 
 <!--icheck init -->
 <script src="../../assets/js/icheck-init.js"></script>
