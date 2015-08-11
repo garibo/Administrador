@@ -38,7 +38,8 @@
 		pedidos.hora,
 		pedidos.fecha,
 		pedidos.latitud,
-		pedidos.longitud
+		pedidos.longitud,
+		pedidos.id
 
 		FROM pedidos 
 
@@ -54,6 +55,7 @@
 		while($fila = mysql_fetch_array($sql))
 		{
 			$datos[$i] = array(
+				'id' => $fila['id'],
 				'cliente' => $fila['cliente'],
 				'calle' => $fila['calle'],
 				'colonia' => $fila['colonia'],

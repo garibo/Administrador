@@ -14,6 +14,11 @@
 			controller: 'vistaCtrl'
 		}).
 
+		when('/responder/:id', {
+			templateUrl: 'respuesta.html',
+			controller: 'responderCtrl'
+		}).
+
 		when('/importantes', {
 			templateUrl: 'importantes.html',
 			controller: 'importanteCtrl'
@@ -194,6 +199,11 @@
 				increaseArea: '20%'
 			});
 		});
+	})
+
+	.controller('responderCtrl', function($scope) 
+	{
+		
 	})
 
 	.controller('eliminadoCtrl', function($scope, Eliminado, accionesTabla) 
