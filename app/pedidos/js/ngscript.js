@@ -243,19 +243,17 @@
         $scope.enviar = function()
         {
         	var detalles = {
-        		"destinatario" : $scope.datos.Correo,
+        		"destinatario" : $scope.datos.correo,
         		"asunto" : $scope.asunto,
         		"mensaje": $scope.mensaje
         	};
         	Contesta.enviar(detalles)
         	.then(function(data) {
             // promise fulfilled
-            if (data.respuesta =='bien') {
+            if (data.respuesta ==='bien') {
                 swal("Enviado!", "Correo de contestacion enviado.", "success");
-                console.log("si "+data.respuesta);
             } else {
                 swal("Correo no enviado!", "Correo de contestacion no enviado, revise los campos.", "error");
-                console.log("no "+data.respuesta);
             }
             }, function(error) {
                 swal("Error!", "Ha ocurrido un error intente recargando la pagina.", "error");
