@@ -17,7 +17,7 @@
 	{
 		$datos = array();
 
-		$peticion = "SELECT * FROM listapedidos WHERE visto = 0";
+		$peticion = "SELECT * FROM listapedidos WHERE visto = 0 AND (eliminado is null or eliminado != 1)";
 
 		$sql = mysql_query($peticion);
 		$i = 0;

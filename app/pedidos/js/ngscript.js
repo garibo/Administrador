@@ -92,6 +92,37 @@
 	  }
 	};
 	})
+
+	.factory('Contesta',function($http, $q){
+		return {
+		  datos: function (id, callback){
+		    $http({
+		      method: 'GET',
+		      url: 'http://localhost/administrador/app/pedidos/php/cont/getCon.php/'+id+''
+		    }).success(callback);
+		  },
+		  enviar: function(datos) {
+	        return $http({
+				method: "POST",
+				url: "http://localhost/administrador/app/pedidos/php/cont/snd.php",
+				data: datos,
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+				})
+	            .then(function(response) {
+	                if (typeof response.data === 'object') {
+	                    return response.data;
+	                } else {
+	                    // invalid response
+	                    return $q.reject(response.data);
+	                }
+
+	            }, function(response) {
+	                return $q.reject(response.data);
+	            });
+        	}
+		};
+	})
+
 	.controller('listaCtrl', function($scope, Listado, accionesTabla) 
 	{
 		$scope.pedidos = Listado.query();
@@ -201,9 +232,35 @@
 		});
 	})
 
-	.controller('responderCtrl', function($scope) 
+	.controller('responderCtrl', function($scope, $routeParams, Contesta) 
 	{
-		
+		Contesta.datos($routeParams.id, function(data) {
+        	$scope.datos = data[0];
+        	$scope.asunto = "Su pedido ha sido atendido";
+        	$scope.mensaje = "Su pedido tartara aproximadamente <Escribir aqui el tiempo que tardara> minutos en llegar a esta direccion:  "+$scope.datos.direccion;
+        });
+
+        $scope.enviar = function()
+        {
+        	var detalles = {
+        		"destinatario" : $scope.datos.Correo,
+        		"asunto" : $scope.asunto,
+        		"mensaje": $scope.mensaje
+        	};
+        	Contesta.enviar(detalles)
+        	.then(function(data) {
+            // promise fulfilled
+            if (data.respuesta =='bien') {
+                swal("Enviado!", "Correo de contestacion enviado.", "success");
+                console.log("si "+data.respuesta);
+            } else {
+                swal("Correo no enviado!", "Correo de contestacion no enviado, revise los campos.", "error");
+                console.log("no "+data.respuesta);
+            }
+            }, function(error) {
+                swal("Error!", "Ha ocurrido un error intente recargando la pagina.", "error");
+            });
+        }
 	})
 
 	.controller('eliminadoCtrl', function($scope, Eliminado, accionesTabla) 

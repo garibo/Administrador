@@ -79,6 +79,7 @@ CREATE TABLE pedidos
 	visto  				BOOLEAN 				DEFAULT FALSE,
 	importante  		BOOLEAN 				DEFAULT FALSE,
 	eliminado	  		BOOLEAN 				DEFAULT FALSE,
+	contestado	  		BOOLEAN 				DEFAULT FALSE,
 	PRIMARY KEY (id),
 	FOREIGN KEY (id_cliente) REFERENCES clientes (id),
 	FOREIGN KEY (id_direccion) REFERENCES direcciones (id),
@@ -105,3 +106,14 @@ CREATE TABLE precios_pizzas
 	precio				numeric(15,2),
 	PRIMARY KEY (id)
 );
+
+CREATE TABLE respuestas
+(
+	id 					int 					not null auto_increment,
+	id_pedido			int,
+	mensaje 			varchar(600),
+	fecha				date,
+	hora				time,
+	PRIMARY KEY (id),
+	FOREIGN KEY (id_pedido) REFERENCES pedidos (id)
+)

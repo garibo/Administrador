@@ -14,23 +14,23 @@
             <button class="btn btn-sm"><i class="fa fa-times"></i> Descartar</button>
         </div>
         <div class="compose-mail">
-            <form role="form-horizontal" method="post">
+            <form role="form-horizontal" name="responderForm">
                 <div class="form-group">
                     <label for="to" class="">Para:</label>
-                    <input type="text" tabindex="1" id="to" class="form-control">
+                    <input type="text" tabindex="1" id="to" class="form-control" ng-model="datos.correo">
                 </div>
 
                 <div class="form-group">
                     <label for="subject" class="">Asunto:</label>
-                    <input type="text" tabindex="1" id="subject" class="form-control">
+                    <input type="text" tabindex="1" id="subject" class="form-control" ng-model="asunto">
                 </div>
 
                 <div class="compose-editor">
-                    <textarea class="form-control" rows="9"></textarea>
+                    <textarea class="form-control" rows="9" ng-model="mensaje"></textarea>
                 </div>
 
                 <div class="compose-btn">
-                    <button class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Enviar</button>
+                    <button class="btn btn-primary btn-sm" ng-click="enviar()"><i class="fa fa-check"></i> Enviar</button>
                     <button class="btn btn-sm"><i class="fa fa-times"></i> Descartar</button>
                 </div>
 
