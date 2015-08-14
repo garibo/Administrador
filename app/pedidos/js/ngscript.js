@@ -19,6 +19,11 @@
 			controller: 'responderCtrl'
 		}).
 
+		when('/contestados', {
+			templateUrl: 'contestados.html',
+			controller: 'contestadoCtrl'
+		}).
+
 		when('/importantes', {
 			templateUrl: 'importantes.html',
 			controller: 'importanteCtrl'
@@ -36,6 +41,10 @@
 
 	.factory('Listado',function($resource){
 		return $resource('http://localhost/administrador/app/pedidos/php/api/');
+	})
+
+	.factory('Contestados',function($resource){
+		return $resource('http://localhost/administrador/app/pedidos/php/cont/getContestados.php');
 	})
 
 	.factory('Importantes',function($resource){
@@ -243,6 +252,7 @@
         $scope.enviar = function()
         {
         	var detalles = {
+        		"id" : $routeParams.id,
         		"destinatario" : $scope.datos.correo,
         		"asunto" : $scope.asunto,
         		"mensaje": $scope.mensaje
@@ -259,11 +269,46 @@
                 swal("Error!", "Ha ocurrido un error intente recargando la pagina.", "error");
             });
         }
+
+        $scope.cancelar = function()
+        {
+        	document.location.href = "http://localhost/administrador/app/pedidos/#/vista/"+$routeParams.id
+        }
 	})
 
 	.controller('eliminadoCtrl', function($scope, Eliminado, accionesTabla) 
 	{
 		$scope.pedidos = Eliminado.query();
+
+		$scope.abrir = function(id)
+		{
+			accionesTabla.visto(id); 
+		}
+
+		$scope.cambiar = function(id)
+		{
+			for (var i = $scope.pedidos.length - 1; i >= 0; i--) {
+				if(id == $scope.pedidos[i].id)
+				{
+				    accionesTabla.importante(id, $scope.pedidos[i].importante);
+					$scope.pedidos[i].importante = ($scope.pedidos[i].importante == false)	? true : false;
+					break;				
+				}
+			};
+		}
+
+		$scope.$on('onRepeatLast', function(scope, element, attrs){
+			angular.element('.minimal input').iCheck({
+				checkboxClass: 'icheckbox_minimal',
+				radioClass: 'iradio_minimal',
+				increaseArea: '20%'
+			});
+		});
+	})
+
+	.controller('contestadoCtrl', function($scope, Contestados, accionesTabla) 
+	{
+		$scope.pedidos = Contestados.query();
 
 		$scope.abrir = function(id)
 		{

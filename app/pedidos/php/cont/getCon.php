@@ -25,6 +25,7 @@
 		CONCAT(clientes.nombre,' ',clientes.apellido_paterno,' ',clientes.apellido_materno) AS cliente,
 		CONCAT(direcciones.calle,' #',direcciones.numero,', ',direcciones.colonia) AS direccion,
 		clientes.correo, 
+		pedidos.eliminado,
 		pedidos.id 
 
 		FROM pedidos 
@@ -42,6 +43,7 @@
 				'id' => $fila['id'],
 				'cliente' => $fila['cliente'],
 				'direccion' => $fila['direccion'],
+				'eliminado' => $fila['eliminado'],
 				'correo' => $fila['correo']
 				);
 			$i++;

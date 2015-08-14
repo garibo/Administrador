@@ -39,6 +39,7 @@
 		pedidos.fecha,
 		pedidos.latitud,
 		pedidos.longitud,
+		pedidos.eliminado,
 		pedidos.id
 
 		FROM pedidos 
@@ -68,7 +69,8 @@
 				'hora' => $fila['hora'],
 				'fecha' => $fila['fecha'],
 				'latitud' => $fila['latitud'],
-				'longitud' => $fila['longitud']
+				'longitud' => $fila['longitud'],
+				'eliminado' => $fila['eliminado']
 				);
 			$i++;
 		}

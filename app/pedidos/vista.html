@@ -15,7 +15,7 @@
                 <h4 class="pull-left"><strong>Cliente: </strong>{{datos.cliente}}</h4>
             </div>
             <div class="col-md-4">
-                <div class="compose-btn pull-right">
+                <div class="compose-btn pull-right" ng-hide="datos.eliminado == 1">
                     <a ng-href="#/responder/{{datos.id}}" class="btn btn-sm btn-primary" ><i class="fa fa-reply"></i> Contestar</a>
                     <button class="btn btn-sm tooltips" data-original-title="Trash" data-toggle="tooltip" data-placement="top" title="" ng-click="eliminar()"><i class="fa fa-trash-o"></i></button>
                 </div>
@@ -85,7 +85,7 @@
             </div>
         </div>
         </div>
-        <div class="compose-btn pull-left">
+        <div class="compose-btn pull-left" ng-hide="datos.eliminado == 1">
             <a ng-href="#/responder/{{datos.id}}" class="btn btn-sm btn-primary" ><i class="fa fa-reply"></i> Contestar</a>
             <button class="btn btn-sm tooltips" data-original-title="Trash" data-toggle="tooltip" data-placement="top" title="" ng-click="eliminar()"><i class="fa fa-trash-o"></i></button>
         </div>

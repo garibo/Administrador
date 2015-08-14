@@ -10,15 +10,16 @@
 	@$destinatario = $request->destinatario;
 	@$asunto  = $request->asunto;
 	@$mensaje = $request->mensaje;
+	@$id = $request->id;
 
 	switch($_SERVER["REQUEST_METHOD"])
 	{
 		case 'POST':
-			Post($asunto, $mensaje, $destinatario);
+			Post($asunto, $mensaje, $destinatario, $id);
 		break;
 	}
 
-	function Post($asunto, $mensaje, $destinatario)
+	function Post($asunto, $mensaje, $destinatario, $id)
 	{
 		$datos = array();
 		$to = $destinatario;
@@ -35,6 +36,9 @@
 
 		if(mail($to,$subject,$message,$headers))
 		{
+			$sql = "UPDATE pedidos SET contestado = 1 WHERE id = $id";
+			mysql_query($sql);
+
 			$respuesta[0] = array(
 			'respuesta' => "bien"
 			);
