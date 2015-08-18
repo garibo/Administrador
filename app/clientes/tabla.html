@@ -10,8 +10,7 @@
         <tr>
             <th>N°</th>
             <th>Nombre</th>
-            <th>Apellido paterno</th>
-            <th>Apellido materno</th>
+            <th>Email</th>
             <th>Info</th>
         </tr>
         </thead>
@@ -19,8 +18,7 @@
         <tr class=""  ng-repeat="cliente in clientes | filter:query">
             <td>{{$index+1}}</td>
             <td>{{cliente.nombre}}</td>
-            <td>{{cliente.apellido_paterno}}</td>
-            <td>{{cliente.apellido_materno}}</td>
+            <td>{{cliente.correo}}</td>
             <td><a class="edit" href="">Info</a></td>
         </tr>
  

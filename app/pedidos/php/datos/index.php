@@ -22,7 +22,7 @@
 
 		$peticion = "SELECT 
 
-		CONCAT(clientes.nombre,' ',clientes.apellido_paterno,' ',clientes.apellido_materno) AS cliente,
+		clientes.nombre AS cliente,
 
 		direcciones.calle, 
 		direcciones.colonia, 

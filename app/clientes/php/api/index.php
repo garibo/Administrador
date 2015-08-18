@@ -12,8 +12,7 @@
 	$request = json_decode($postdata);
 	@$id  = $request->id;
 	@$nombre = $request->nombre;
-	@$apellido_paterno = $request->apellido_paterno;
-	@$apellido_materno = $request->apellido_materno;
+	@$correo = $request->correo;
 
 	switch($_SERVER["REQUEST_METHOD"])
 	{
@@ -22,11 +21,11 @@
 		break;
 
 		case 'POST':
-			Post($nombre, $apellido_paterno, $apellido_materno);
+			Post($nombre, $correo);
 		break;
 
 		case 'PUT':
-			Put($nombre, $apellido_paterno, $apellido_materno);
+			Put($nombre, $correo);
 		break;
 
 		case 'DELETE':
@@ -51,8 +50,7 @@
 			$datos[$i] = array(
 				'id' => $fila['id'],
 				'nombre' => $fila['nombre'],
-				'apellido_paterno' => $fila['apellido_paterno'],
-				'apellido_materno' => $fila['apellido_materno']
+				'correo' => $fila['correo']
 				);
 			$i++;
 		}
@@ -60,18 +58,18 @@
 		echo $send;	
 	}
 
-	function Post($nombre, $apellido_paterno, $apellido_materno)
+	function Post($nombre, $correo)
 	{
-		$peticion = "INSERT INTO clientes(nombre, apellido_paterno, apellido_materno) VALUES ('$nombre', '$apellido_paterno', '$apellido_materno')";
+		$peticion = "INSERT INTO clientes(nombre, correo) VALUES ('$nombre', '$correo')";
 		mysql_query($peticion);
 	}
 
-	function Put($nombre, $apellido_paterno, $apellido_materno)
+	function Put($nombre, $correo)
 	{
 		$partes = parse_url($_SERVER["REQUEST_URI"]);
 		$id = explode('/', $partes['path'])[6];
 
-		$peticion = "UPDATE clientes SET nombre='$nombre',apellido_paterno='$apellido_paterno',apellido_materno='$apellido_materno' WHERE id = $id";
+		$peticion = "UPDATE clientes SET nombre='$nombre' ,correo='$correo' WHERE id = $id";
 		mysql_query($peticion);
 	}
 

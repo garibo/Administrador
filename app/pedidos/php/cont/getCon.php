@@ -21,8 +21,8 @@
 		$parametro=explode('/', $partes['path'])[7];
 
 		$peticion = "SELECT 
-
-		CONCAT(clientes.nombre,' ',clientes.apellido_paterno,' ',clientes.apellido_materno) AS cliente,
+		
+		clientes.nombre AS cliente,
 		CONCAT(direcciones.calle,' #',direcciones.numero,', ',direcciones.colonia) AS direccion,
 		clientes.correo, 
 		pedidos.eliminado,
