@@ -60,8 +60,33 @@
 
 	function Post($nombre, $correo)
 	{
-		$peticion = "INSERT INTO clientes(nombre, correo) VALUES ('$nombre', '$correo')";
+		$peticion = 
+		"INSERT INTO clientes(nombre, correo)
+		SELECT * FROM (SELECT '$nombre', '$correo') as tmp
+		WHERE NOT EXISTS(
+			SELECT correo FROM clientes WHERE correo = '$correo'
+		)LIMIT 1;";
 		mysql_query($peticion);
+
+		if(mysql_insert_id() == 0)
+		{
+			$resultado = mysql_query("SELECT id FROM clientes WHERE correo = '$correo'");
+			$datos = mysql_fetch_object($resultado);
+			$id = $datos->id;
+			$respuesta[0] = array(
+			'id' => $id
+			);
+			$send = json_encode($respuesta[0]);
+			echo $send;
+		}
+		else
+		{
+			$respuesta[0] = array(
+			'id' => mysql_insert_id()
+			);
+			$send = json_encode($respuesta[0]);
+			echo $send;
+		}
 	}
 
 	function Put($nombre, $correo)

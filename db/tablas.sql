@@ -26,7 +26,7 @@ CREATE TABLE clientes
 (
 	id 					int  				not null auto_increment,
 	nombre 				varchar(180) 		character set utf8 collate utf8_spanish_ci,
-	correo				varchar(254)
+	correo				varchar(254),
 	PRIMARY KEY (id)
 );
 
