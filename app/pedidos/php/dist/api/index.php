@@ -17,12 +17,30 @@
 	@$id_telefono = $request->id_telefono;
 	@$latitud = $request->latitud;
 	@$longitud = $request->longitud;
+	@$telefono = $request->telefono;
 	@$productos = json_encode($request->productos);
 	$productos = json_decode($productos, true);
+	@$direccion = json_encode($request->direccion);
+	$direccion = json_decode($direccion, true);
+
+	function idDireccion($direccion)
+	{
+		$sql = "INSERT INTO direcciones (calle, colonia, numero, entre_calles, extra)
+				VALUES ('".$direccion['calle']."', '".$direccion['colonia']."', ".$direccion['numero'].", '".$direccion['entre']."', '".$direccion['informacion']."')";	
+		mysql_query($sql);
+		return mysql_insert_id();
+	}
+
+	function idTelefono($telefono)
+	{
+		$sql = "INSERT INTO telefonos (telefono) VALUES ($telefono)";
+		mysql_query($sql);
+		return mysql_insert_id();
+	}
 
 
 	$queryPedidos = "INSERT INTO pedidos (id_cliente, id_direccion, id_telefono, fecha, hora, latitud, longitud)
-	VALUES ($id_cliente, $id_direccion, $id_telefono, NOW(), NOW(), $latitud, $longitud) ";
+	VALUES ($id_cliente, ".idDireccion($direccion).", ".idTelefono($telefono).", NOW(), NOW(), $latitud, $longitud) ";
 
 	$resultPedidos = mysql_query($queryPedidos);
 

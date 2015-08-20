@@ -5,7 +5,7 @@ CREATE VIEW listapedidos AS
 SELECT pedidos.id, clientes.nombre , CONCAT(direcciones.calle,' #',direcciones.numero,', ',direcciones.colonia) AS direccion,  pedidos.fecha, pedidos.hora, pedidos.visto, pedidos.importante, pedidos.eliminado, pedidos.contestado
 FROM pedidos
 	LEFT JOIN direcciones
-ON pedidos.id_cliente = direcciones.id_cliente
+ON pedidos.id_direccion = direcciones.id
 	LEFT JOIN clientes
 ON pedidos.id_cliente = clientes.id
 ORDER BY pedidos.id DESC;

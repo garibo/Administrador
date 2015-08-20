@@ -43,23 +43,19 @@ CREATE TABLE usuarios
 CREATE TABLE direcciones
 (
 	id 					int 					not null auto_increment,
-	id_cliente			int,
 	calle 				varchar(70) 			character set utf8 collate utf8_spanish_ci,
 	colonia 			varchar(70) 			character set utf8 collate utf8_spanish_ci,
 	numero				int,
 	entre_calles 		varchar(150) 			character set utf8 collate utf8_spanish_ci,
 	extra 				varchar(70) 			character set utf8 collate utf8_spanish_ci,
-	PRIMARY KEY (id),
-	FOREIGN KEY (id_cliente) REFERENCES clientes (id)
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE telefonos
 (
 	id 					int  					not null auto_increment,
-	id_cliente			int,
 	telefono 			varchar(15) 			character set utf8 collate utf8_spanish_ci,
-	PRIMARY KEY (id),
-	FOREIGN KEY (id_cliente) REFERENCES clientes (id)
+	PRIMARY KEY (id)
 );
 
 
