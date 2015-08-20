@@ -1,6 +1,6 @@
 (function(){
 
-	angular.module('ajustesApp', ['ngResource', 'ngMessages'])
+	angular.module('ajustesApp', ['ngResource', 'ngMessages', 'flow'])
 
 
 	.factory('Precios',function($resource){
@@ -40,6 +40,7 @@
 	        }
 	    };
 	})
+
 
 	.filter('capitalize', function() {
 	  return function(input, scope) {
@@ -103,5 +104,22 @@
     	$scope.contrann = "";
         $scope.passwordForm.$setUntouched();
 	}
-	});
+	})
+
+	.config(['flowFactoryProvider', function (flowFactoryProvider) {
+	  flowFactoryProvider.defaults = {
+	    target: 'php/upload/upload.php',
+	    permanentErrors: [404, 500, 501],
+	    maxChunkRetries: 1,
+	    chunkRetryInterval: 5000,
+	    simultaneousUploads: 4,
+	    singleFile: true
+	  };
+	  var a;
+	  flowFactoryProvider.on('catchAll', function (event) {
+	  	a || console.log("solo una vez - ",arguments[1].uniqueIdentifier);
+	    a = a || arguments[1].uniqueIdentifier;
+	    console.log(a);
+	  });
+	}]);
 })();
