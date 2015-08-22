@@ -59,10 +59,10 @@
     <ul class="nav pull-right top-menu">
         
         <!-- user login dropdown start-->
-        <li class="dropdown">
+        <li class="dropdown" ng-controller="perfilCtrl">
             <a data-toggle="dropdown" class="dropdown-toggle" href="">
-                <img alt="" src="../../assets/images/avatars/avatarmain">
-                <span class="username">Kevin Garibo</span>
+                <img alt="" ng-src="../../assets/images/avatars/avatarmain">
+                <span class="username">{{nombrePerfil}}</span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
@@ -208,11 +208,11 @@
         </aside>
 
         <section class="panel">
-            <div class="twt-feed blue-bg">
+            <div class="twt-feed blue-bg" ng-controller="perfilCtrl">
                 <a href="#">
-                    <img alt="" src="../../assets/images/avatars/avatarmain">
+                    <img alt="" ng-src="../../assets/images/avatars/avatarmain">
                 </a>
-                <h1>Andrea Mercado</h1>
+                <h1>{{nombrePerfil}}</h1>
                 <p>admin@pizzeriayes.com</p>
 
             </div>
@@ -301,6 +301,45 @@
               </center>
               </div>
         </section>
+
+        <section class="panel">
+            <div class="twt-feed blue-bg" ng-controller="perfilCtrl">
+                <a href="#">
+                    <img alt="" ng-src="../../assets/images/avatars/avatarmain">
+                </a>
+                <h1>{{nombrePerfil}}</h1>
+                <p>admin@pizzeriayes.com</p>
+
+            </div>
+            <div class=" form" style="padding-left:35px; padding-right:35px; margin-top:35px" ng-controller="userCtrl">
+                <form class="cmxform form-horizontal " name="userForm" ng-submit="cambiarNombre()">
+                    <div class="form-group " ng-class="{ 'has-error': userForm.nombre.$touched && userForm.nombre.$invalid }">
+                        <label for="cname" class="control-label col-lg-3">Nuevo nombre de usuario</label>
+                        <div class="col-lg-6">
+                            <input class="form-control " type="text"
+                            name="nombre"
+                            ng-model="nombre" 
+                            ng-maxlength="50" 
+                            required />
+                            <div class="help-block" ng-messages="userForm.nombre.$error" ng-if="userForm.nombre.$touched">
+                              <p ng-message="maxlength">El campo es muy largo.</p>
+                              <p ng-message="required">El campo es requerido.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-3 col-lg-6">
+                            <button class="btn btn-primary" type="submit" ng-disabled="userForm.$invalid">Cambiar nombre de usuario</button>
+                            <button class="btn btn-default" type="button" ng-click="cancelar()">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+
+                <br>
+            </div>
+
+    
+        </section >
 
                 
             </div>

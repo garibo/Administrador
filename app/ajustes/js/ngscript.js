@@ -15,32 +15,58 @@
 	.factory('Contras', function ($http, $q) {
 	    return {
 	        Cambiar: function(contra, contran, contrann) {
-	            return $http({
-						method: "POST",
-						url: "http://localhost/administrador/app/ajustes/php/atnt/api/",
-						data: {
-							"contra" 	: contra,
-							"contran" 	: contran,
-							"contrann" 	: contrann
-						},
-						headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-						})
-						.then(function(response) {
-			                if (typeof response.data === 'object') {
-			                    return response.data;
-			                } else {
-			                    // invalid response
-			                    return $q.reject(response.data);
-			                }
+	          return $http({
+				method: "POST",
+				url: "http://localhost/administrador/app/ajustes/php/atnt/api/",
+				data: {
+					"contra" 	: contra,
+					"contran" 	: contran,
+					"contrann" 	: contrann
+				},
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+				})
+				.then(function(response) {
+	                if (typeof response.data === 'object') {
+	                    return response.data;
+	                } else {
+	                    // invalid response
+	                    return $q.reject(response.data);
+	                }
 
-			            }, function(response) {
-			                // something went wrong
-			                return $q.reject(response.data);
-			            });
+	            }, function(response) {
+	                // something went wrong
+	                return $q.reject(response.data);
+	            });
 	        }
 	    };
 	})
 
+	.factory('Usuarios', function ($http, $q) {
+	    return {
+	        Cambiar: function(nombre) {
+	          return $http({
+				method: "POST",
+				url: "http://localhost/administrador/app/ajustes/php/usn/index.php",
+				data: {
+					"nombre" 	: nombre
+				},
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+				})
+				.then(function(response) {
+	                if (typeof response.data === 'object') {
+	                    return response.data;
+	                } else {
+	                    // invalid response
+	                    return $q.reject(response.data);
+	                }
+
+	            }, function(response) {
+	                // something went wrong
+	                return $q.reject(response.data);
+	            });
+	        }
+	    };
+	})
 
 	.filter('capitalize', function() {
 	  return function(input, scope) {
@@ -106,6 +132,31 @@
 	}
 	})
 
+	.controller('userCtrl', function($scope, Usuarios) 
+	{
+		$scope.cambiarNombre = function() 
+		{
+			Usuarios.Cambiar($scope.nombre)
+			.then(function(data) {
+	            if (data.respuesta === 'bien') {
+	                swal("Nombre cambiado!", "El nombre de usuario ha sido cambiado exitosamente", "success");
+	            	$scope.cancelar();
+	            } else {
+	                sweetAlert("Oops...", "Verifica que los campos sean correctos!", "error");
+	            }
+	        }, function(error) {
+	            sweetAlert("Oops...", "ocurrio un error, intenta recargar la pagina!", "error");
+	        });
+		}
+
+		$scope.cancelar = function()
+		{
+			$scope.nombre = "";
+	        $scope.userForm.$setUntouched();
+		}
+
+	})
+
 	.config(['flowFactoryProvider', function (flowFactoryProvider) {
 	  flowFactoryProvider.defaults = {
 	    target: 'php/upload/upload.php',
@@ -121,5 +172,17 @@
 	    a = a || arguments[1].uniqueIdentifier;
 	    console.log(a);
 	  });
-	}]);
+	}])
+
+	.controller('perfilCtrl', function($scope, $http) 
+	{
+		$scope.nombrePerfil = "";
+		$http.get('http://localhost/administrador/app/ajustes/php/usn/')
+		.then(function(respuesta) {
+           $scope.nombrePerfil = respuesta.data.nombre;
+        }, function(error) {
+
+        });
+	});
+
 })();

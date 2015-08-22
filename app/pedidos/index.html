@@ -64,10 +64,10 @@
     <ul class="nav pull-right top-menu">
         
         <!-- user login dropdown start-->
-        <li class="dropdown">
+        <li class="dropdown" ng-controller="perfilCtrl">
             <a data-toggle="dropdown" class="dropdown-toggle" href="">
-                <img alt="" src="../../assets/images/avatars/avatarmain">
-                <span class="username">Kevin Garibo</span>
+                <img alt="" ng-src="../../assets/images/avatars/avatarmain">
+                <span class="username">{{nombrePerfil}}</span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">

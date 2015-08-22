@@ -35,7 +35,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body ng-app="estadisticaApp">
 
 <section id="container" >
 <!--header start-->
@@ -62,10 +62,10 @@
     <ul class="nav pull-right top-menu">
         
         <!-- user login dropdown start-->
-        <li class="dropdown">
+        <li class="dropdown" ng-controller="perfilCtrl">
             <a data-toggle="dropdown" class="dropdown-toggle" href="">
-                <img alt="" src="../../assets/images/avatars/avatarmain">
-                <span class="username">Kevin Garibo</span>
+                <img alt="" ng-src="../../assets/images/avatars/avatarmain">
+                <span class="username">{{nombrePerfil}}</span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
@@ -334,7 +334,7 @@
 <script type="text/javascript" src="../../assets/js/angularjs/angular-route.min.js"></script>
 <script type="text/javascript" src="../../assets/js/angularjs/angular-resource.min.js"></script>
 <script type="text/javascript" src="../../assets/js/angularjs/angular-messages.min.js"></script>
-<!-- <script type="text/javascript" src="js/ngscript.js"></script> -->
+<script type="text/javascript" src="js/ngscript.js"></script>
 
 <!--Morris Chart-->
 <script src="../../assets/js/morris-chart/morris.js"></script>
