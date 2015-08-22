@@ -10,7 +10,26 @@ ON pedidos.id_direccion = direcciones.id
 ON pedidos.id_cliente = clientes.id
 ORDER BY pedidos.id DESC;
 
+-----------------------------------------------------------
+-----View para listar los pedidos productos ordenados------
+-----------------------------------------------------------
+CREATE VIEW productos_pedidos AS
+SELECT pedidos_linea.id , productos.nombre, productos.id AS id_producto, productos.tipo
+FROM pedidos_linea
+LEFT JOIN productos
+ON pedidos_linea.id_producto = productos.id
+ORDER BY pedidos_linea.id;
 
+
+-------------------------------------------------------------
+-----View para listar el top 5 de productos mas pedidos------
+-------------------------------------------------------------
+CREATE VIEW top_pedidos AS
+SELECT id_producto, nombre, COUNT(id_producto) AS concurrencia  
+FROM     productos_pedidos
+GROUP BY id_producto
+ORDER BY concurrencia DESC
+LIMIT    5;
 
 
 -----------------------------------------------------------
@@ -41,7 +60,6 @@ LEFT JOIN telefonos ON pedidos.id_telefono = telefonos.id
 WHERE pedidos.id = 1;
 
 
-
 ---------------------------------------------------------------
 ---Consulta para listar los productos de un solo pedido--------
 ---------------------------------------------------------------
@@ -61,4 +79,3 @@ INNER JOIN productos
 ON pedidos_linea.id_producto = productos.id
 
 WHERE pedidos_linea.id_pedido = 1;
-
