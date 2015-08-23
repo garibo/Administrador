@@ -231,6 +231,12 @@
 	.controller('importanteCtrl', function($scope, Importantes, accionesTabla) 
 	{
 		$scope.pedidos = Importantes.query();
+		/*Variables de paginacion*/
+		$scope.curPage = 0;
+	 	$scope.pageSize = 6;
+	 	$scope.numberOfPages = function() {
+			return Math.ceil($scope.pedidos.length / $scope.pageSize);
+		};
 
 		$scope.abrir = function(id)
 		{
@@ -296,6 +302,12 @@
 	.controller('eliminadoCtrl', function($scope, Eliminado, accionesTabla) 
 	{
 		$scope.pedidos = Eliminado.query();
+		/*Variables de paginacion*/
+		$scope.curPage = 0;
+	 	$scope.pageSize = 6;
+	 	$scope.numberOfPages = function() {
+			return Math.ceil($scope.pedidos.length / $scope.pageSize);
+		};
 
 		$scope.abrir = function(id)
 		{
@@ -326,6 +338,12 @@
 	.controller('contestadoCtrl', function($scope, Contestados, accionesTabla) 
 	{
 		$scope.pedidos = Contestados.query();
+		/*Variables de paginacion*/
+		$scope.curPage = 0;
+	 	$scope.pageSize = 6;
+	 	$scope.numberOfPages = function() {
+			return Math.ceil($scope.pedidos.length / $scope.pageSize);
+		};
 
 		$scope.abrir = function(id)
 		{

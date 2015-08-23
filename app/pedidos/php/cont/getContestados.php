@@ -29,7 +29,7 @@
 				'direccion' => $fila['direccion'],
 				'fecha' => $fila['fecha'],
 				'visto' => $fila['visto'],
-				'contestado' => $fila['contestado'],
+				'importante' => $fila['importante'],
 				'hora' => $fila['hora']
 				);
 			$i++;
