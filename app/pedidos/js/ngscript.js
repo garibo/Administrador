@@ -135,6 +135,12 @@
 	.controller('listaCtrl', function($scope, Listado, accionesTabla) 
 	{
 		$scope.pedidos = Listado.query();
+		/*Variables de paginacion*/
+		$scope.curPage = 0;
+	 	$scope.pageSize = 6;
+	 	$scope.numberOfPages = function() {
+			return Math.ceil($scope.pedidos.length / $scope.pageSize);
+		};
 
 		$scope.abrir = function(id)
 		{
@@ -143,6 +149,7 @@
 
 		$scope.cambiar = function(id)
 		{
+
 			for (var i = $scope.pedidos.length - 1; i >= 0; i--) {
 				if(id == $scope.pedidos[i].id)
 				{
@@ -160,6 +167,16 @@
 				increaseArea: '20%'
 			});
 		});
+
+	})
+
+	.filter('pagination', function()
+	{
+	 return function(input, start)
+	 {
+	  start = +start;
+	  return input.slice(start);
+	 };
 	})
 
 	.controller('vistaCtrl', function($scope, $routeParams, DatosPedido) 

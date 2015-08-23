@@ -9,3 +9,9 @@ div.imagedropshadow {
 	-webkit-box-shadow: 1px 1px 5px #999; 
 	box-shadow: 1px 1px 5px #999; 
 }
+
+.bloquear{
+       pointer-events: none !important;
+       cursor: default;
+       color:Gray;
+}

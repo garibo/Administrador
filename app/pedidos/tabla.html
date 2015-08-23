@@ -10,20 +10,16 @@
     </header>
     <div class="panel-body minimal">
         <div class="mail-option">
-            <div class="chk-all">
-                <div class="pull-left mail-checkbox ">
-                </div>
-
-                <div class="btn-group">
-                    <a data-toggle="dropdown" href="#/" class="btn mini all">
-                        Todo
-                        <i class="fa fa-angle-down "></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#/"> Leidos</a></li>
-                        <li><a href="#/"> No leidos</a></li>
-                    </ul>
-                </div>
+            <div class="btn-group hidden-phone">
+                <a data-toggle="dropdown" href="#/" class="btn mini blue">
+                    Mas
+                    <i class="fa fa-angle-down "></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#/"><i class="fa fa-pencil"></i> Marcar como reido</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#/"><i class="fa fa-trash-o"></i> Eliminar</a></li>
+                </ul>
             </div>
 
             <div class="btn-group">
@@ -33,20 +29,20 @@
             </div>
 
 
-            <ul class="unstyled inbox-pagination">
-                <li><span>1-50 of 124</span></li>
-                <li>
-                    <a class="np-btn" href="#/"><i class="fa fa-angle-left  pagination-left"></i></a>
+            <ul class="unstyled inbox-pagination" ng-show="pedidos.length">
+                <li><span>pagina {{curPage + 1}} de {{ numberOfPages() }}</span></li>
+                <li >
+                    <a class="np-btn" href="" ng-disabled="curPage == 0" ng-click="curPage=curPage-1" ng-class="{bloquear: curPage == 0}"><i class="fa fa-angle-left  pagination-left"></i></a>
                 </li>
-                <li>
-                    <a class="np-btn" href="#/"><i class="fa fa-angle-right pagination-right"></i></a>
+                <li >
+                    <a class="np-btn" href="" ng-disabled="curPage >= pedidos.length/pageSize - 1" ng-click="curPage = curPage+1" ng-class="{bloquear: curPage >= pedidos.length/pageSize - 1}"><i class="fa fa-angle-right pagination-right"></i></a>
                 </li>
             </ul>
         </div>
         <div class="table-inbox-wrap ">
             <table class="table table-inbox table-hover">
         <tbody>
-        <tr ng-class="{unread: pedido.visto == 0}" ng-repeat="pedido in pedidos  | filter:query" on-last-repeat>
+        <tr ng-class="{unread: pedido.visto == 0}" ng-repeat="pedido in pedidos  | filter:query | pagination: curPage * pageSize | limitTo: pageSize " on-last-repeat>
             <td class="inbox-small-cells">
                 <input type="checkbox" class="mail-checkbox">
             </td>
