@@ -8,18 +8,18 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="images/favicon.png">
 
-    <title>Pizzas</title>
+    <title>Ayuda</title>
 
     <!--Core CSS -->
-    <link href="../../../assets/bs3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../../assets/css/bootstrap-reset.css" rel="stylesheet">
-    <link href="../../../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="../../assets/bs3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/css/bootstrap-reset.css" rel="stylesheet">
+    <link href="../../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
-    <link href="../../../assets/css/style.css" rel="stylesheet">
-    <link href="../../../assets/css/style-responsive.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="../../../assets/sweetalert/dist/sweetalert.css">
+    <link href="../../assets/css/style.css" rel="stylesheet">
+    <link href="../../assets/css/style-responsive.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/sweetalert/dist/sweetalert.css">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]>
@@ -32,7 +32,7 @@
     <![endif]-->
 </head>
 
-<body ng-app="pizzaApp">
+<body ng-app="ayudaApp">
 
 <section id="container" >
 <!--header start-->
@@ -41,7 +41,7 @@
 <div class="brand">
 
     <a href="index.html" class="logo">
-        <!-- <img src="../../../assets/images/logo.png" alt=""> -->
+        <!-- <img src="../../assets/images/logo.png" alt=""> -->
     </a>
     <div class="sidebar-toggle-box">
         <div class="fa fa-bars"></div>
@@ -61,34 +61,34 @@
         <!-- user login dropdown start-->
         <li class="dropdown" ng-controller="perfilCtrl">
             <a data-toggle="dropdown" class="dropdown-toggle" href="">
-                <img alt="" ng-src="../../../assets/images/avatars/avatarmain">
+                <img alt="" ng-src="../../assets/images/avatars/avatarmain">
                 <span class="username">{{nombrePerfil}}</span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
-                <li><a href="../../ajustes"><i class="fa fa-cog"></i> Ajustes</a></li>
+                <li><a href="../ajustes"><i class="fa fa-cog"></i> Ajustes</a></li>
                 <li><a href="login.html"><i class="fa fa-key"></i>Salir </a></li>
             </ul>
         </li>
-     </ul>
+    </ul>
     <!--search & user info end-->
 </div>
 </header>
 <!--header end-->
 <aside>
     <div id="sidebar" class="nav-collapse">
- <!-- sidebar menu start-->            
+        <!-- sidebar menu start-->            
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
             <li>
-                <a href="../../dashboard">
+                <a href="../dashboard" >
                     <i class="fa fa-dashboard"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             
             <li>
-                <a href="../../pedidos">
+                <a href="../pedidos">
                     <i class="fa fa-cart-plus"></i>
                     <span>Pedidos</span>
                 </a>
@@ -100,49 +100,48 @@
                     <span>Productos</span>
                 </a>
                 <ul class="sub">
-                    <li><a class="active" href="">Pizzas</a></li>
-                    <li><a href="../otros">Otros platillos</a></li>
-                    <li><a href="../refrescos">Refrescos</a></li>
+                    <li><a href="../productos/pizzas">Pizzas</a></li>
+                    <li><a href="../productos/otros">Otros platillos</a></li>
+                    <li><a href="../productos/refrescos">Refrescos</a></li>
                 </ul>
             </li>
 
             <li>
-                <a href="../../repartidores">
+                <a href="../repartidores">
                     <i class="fa fa-motorcycle"></i>
                     <span>Repartidores</span>
                 </a>
             </li>
 
             <li>
-                <a href="../../clientes">
+                <a href="../clientes" >
                     <i class="fa fa-users"></i>
                     <span>Clientes</span>
                 </a>
             </li>
 
             <li>
-                <a href="../../ajustes">
+                <a href="../ajustes" >
                     <i class="fa fa-gears"></i>
                     <span>Ajustes</span>
                 </a>
             </li>
-
+            
             <li>
-                <a href="../../estadistica">
+                <a href="../estadistica">
                     <i class="fa fa-bar-chart"></i>
                     <span>Estadisticas</span>
                 </a>
             </li>
 
             <li>
-                <a href="../../ayuda">
+                <a href="../ayuda" class="active">
                     <i class="fa fa-question-circle"></i>
                     <span>Ayuda</span>
                 </a>
             </li>
+
         </ul>
-    </div>        
-<!-- sidebar menu end-->
     </div>        
 <!-- sidebar menu end-->
     </div>
@@ -153,30 +152,6 @@
         <section class="wrapper">
         <!-- page start-->
 
-        <div class="row">
-            <div class="col-sm-12">
-
-        <div class="row" >
-            <div class="col-sm-12">
-                <section class="panel">
-                    <header class="panel-heading">
-                        Pizzas
-                        <span class="tools pull-right">
-                            <a href="javascript:;" class="fa fa-chevron-down"></a>
-                            <a href="javascript:;" class="fa fa-cog"></a>
-                            <a href="javascript:;" class="fa fa-times"></a>
-                         </span>
-                    </header>
-                    <div class="panel-body">
-                        <ng-view></ng-view>  
-                    </div>
-                </section>
-            </div>
-        </div>
-
-                
-            </div>
-        </div>
         <!-- page end-->
         </section>
     </section>
@@ -186,24 +161,26 @@
 
 </section>
 
+
+
 <!-- Placed js at the end of the document so the pages load faster -->
 
 <!--Core js-->
-<script src="../../../assets/js/jquery.js"></script>
-<script src="../../../assets/bs3/js/bootstrap.min.js"></script>
-<script class="include" type="text/javascript" src="../../../assets/js/jquery.dcjqaccordion.2.7.js"></script>
-<script src="../../../assets/js/jquery.scrollTo.min.js"></script>
-<script src="../../../assets/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
-<script src="../../../assets/js/jquery.nicescroll.js"></script>
-<script type="text/javascript" src="../../../assets/sweetalert/dist/sweetalert.min.js"></script>
+<script src="../../assets/js/jquery.js"></script>
+<script src="../../assets/bs3/js/bootstrap.min.js"></script>
+<script class="include" type="text/javascript" src="../../assets/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="../../assets/js/jquery.scrollTo.min.js"></script>
+<script src="../../assets/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
+<script src="../../assets/js/jquery.nicescroll.js"></script>
 
+<script type="text/javascript" src="../../assets/sweetalert/dist/sweetalert.min.js"></script>
 
 <!--common script init for all pages-->
-<script src="../../../assets/js/scripts.js"></script>
-<script type="text/javascript" src="../../../assets/js/angularjs/angular.min.js"></script>
-<script type="text/javascript" src="../../../assets/js/angularjs/angular-route.min.js"></script>
-<script type="text/javascript" src="../../../assets/js/angularjs/angular-resource.min.js"></script>
-<script type="text/javascript" src="../../../assets/js/angularjs/angular-messages.min.js"></script>
+<script src="../../assets/js/scripts.js"></script>
+<script type="text/javascript" src="../../assets/js/angularjs/angular.min.js"></script>
+<script type="text/javascript" src="../../assets/js/angularjs/angular-route.min.js"></script>
+<script type="text/javascript" src="../../assets/js/angularjs/angular-resource.min.js"></script>
+<script type="text/javascript" src="../../assets/js/angularjs/angular-messages.min.js"></script>
 <script type="text/javascript" src="js/ngscript.js"></script>
 
 </body>
