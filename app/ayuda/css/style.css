@@ -1,0 +1,98 @@
+#envoltura > ul > li
+{
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    list-style: none;
+    text-decoration: none;
+}
+
+#envoltura > ul
+{
+	margin-bottom: 0px;
+}
+
+#envoltura > ul > li:hover
+{
+	background-color: #fafafa;
+}
+
+#envoltura > ul > li > a
+{
+	margin: 0px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#envoltura > ul > li> a > h3
+{
+    padding-top: 13px;
+    padding-bottom: 2px;
+	color: #212121;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+    font-family: 'Roboto','Helvetica Neue',Helvetica,sans-serif;
+    font-size: 16px;
+    padding-left: 72px;
+    margin-top: 0px;
+}
+
+#envoltura > ul > li > a:before
+{
+    font-weight: 800;
+	background: none;
+    font-size: 24px;
+    left: 16px;
+    line-height: 24px;
+    text-align: center;
+    top: 11px;
+    position: absolute;
+}
+
+#main-content > section > section > header > h2
+{
+    font-family: 'Roboto','Helvetica Neue',Helvetica,sans-serif;
+    color: #212121;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    margin: 0;
+    padding: 5px 0px 5px 16px;
+    text-align: left;
+}
+
+#main-content > section > section > div
+{
+	padding: 0px;
+	padding-left: -10px;
+	margin: 0px;
+	margin-left: -30px;
+}
+
+#opciones1 > li, #opciones2 > li, #opciones3 > li, #opciones4 > li, #opciones5 > li
+{
+    list-style-type: none;
+}
+
+#opciones1  > li > a > h4, #opciones2  > li > a > h4, #opciones3  > li > a > h4, #opciones4  > li > a > h4, #opciones5  > li > a > h4
+{
+    color: #fff;
+    font-family: 'Roboto','Helvetica Neue',Helvetica,sans-serif;
+    padding-left: 50px;
+    font-size: 16px;
+}
+
+
+li.seleccionado > a:before{
+    color: white;
+    font-size: 24px;
+    background: none;
+    content: '-';
+} 
+
+
+li.libre > a:before {
+    color: #4285f4;
+    content: '+';
+    font-size: 24px;
+} 
