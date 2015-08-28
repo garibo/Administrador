@@ -7,7 +7,7 @@
 	var b = false;
 	var c = false;
 	var d = false;
-	var e = false;
+	var f = false;
 
 	function iniciar()
 	{
@@ -141,17 +141,17 @@
 
 		$("#lista5").addClass("libre");
 		$("ul li#lista5").hover(function(e) { 
-			if(e == false)
+			if(f == false)
 			{
 		    $(this).css("background-color",e.type === "mouseenter"?"#fafafa":"#fff") 				
 			}
 		});
 		$("#opciones5").hide();
 		$("#lista5").click(function(){
-			if(e == false)
+			if(f == false)
 			{
 				$("#lista5 > a > h3").css({"color":"#fff"})
-				e = !e;
+				f = !f;
 			    $(this).css("background-color","#333");
 			    $(this).removeClass("libre");
 			    $(this).addClass("seleccionado");
@@ -159,7 +159,7 @@
 			else
 			{
 				$("#lista5 > a > h3").css({"color":"#000"});
-				e = !e;
+				f = !f;
 				$(this).css("background-color","#fafafa");
 				$(this).removeClass("seleccionado");
 			    $(this).addClass("libre");
