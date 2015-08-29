@@ -74,12 +74,13 @@
     list-style-type: none;
 }
 
-#opciones1  > li > a > h4, #opciones2  > li > a > h4, #opciones3  > li > a > h4, #opciones4  > li > a > h4, #opciones5  > li > a > h4
+#opciones1  > li > a , #opciones2  > li > a , #opciones3  > li > a , #opciones4  > li > a , #opciones5  > li > a 
 {
     color: #fff;
     font-family: 'Roboto','Helvetica Neue',Helvetica,sans-serif;
     padding-left: 50px;
-    font-size: 16px;
+    font-size: 13px;
+    line-height: 30px;
 }
 
 

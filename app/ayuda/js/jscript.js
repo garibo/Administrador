@@ -24,7 +24,7 @@
 			{
 				$("#lista1 > a > h3").css({"color":"#fff"})
 				a = !a;
-			    $(this).css("background-color","#333");
+			    $(this).css("background-color","#616161");
 			    $(this).removeClass("libre");
 			    $(this).addClass("seleccionado");
 			}
@@ -55,7 +55,7 @@
 			{
 				$("#lista2 > a > h3").css({"color":"#fff"})
 				b = !b;
-			    $(this).css("background-color","#333");
+			    $(this).css("background-color","#616161");
 			    $(this).removeClass("libre");
 			    $(this).addClass("seleccionado");
 			}
@@ -88,7 +88,7 @@
 			{
 				$("#lista3 > a > h3").css({"color":"#fff"})
 				c = !c;
-			    $(this).css("background-color","#333");
+			    $(this).css("background-color","#616161");
 			    $(this).removeClass("libre");
 			    $(this).addClass("seleccionado");
 			}
@@ -120,7 +120,7 @@
 			{
 				$("#lista4 > a > h3").css({"color":"#fff"})
 				d = !d;
-			    $(this).css("background-color","#333");
+			    $(this).css("background-color","#616161");
 			    $(this).removeClass("libre");
 			    $(this).addClass("seleccionado");
 			}
@@ -152,7 +152,7 @@
 			{
 				$("#lista5 > a > h3").css({"color":"#fff"})
 				f = !f;
-			    $(this).css("background-color","#333");
+			    $(this).css("background-color","#616161");
 			    $(this).removeClass("libre");
 			    $(this).addClass("seleccionado");
 			}
