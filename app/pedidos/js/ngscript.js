@@ -168,6 +168,13 @@
 			});
 		});
 
+		$scope.fecha = function(dt)
+		{
+			moment.locale('es');
+			// return moment().format('MMM Do YYYY');
+			return moment(dt).startOf('day').fromNow();
+		}
+
 	})
 
 	.filter('pagination', function()
@@ -210,6 +217,18 @@
 				document.location.href = "http://localhost/administrador/app/pedidos/#/"
 			});
 		};
+
+		$scope.fecha = function(dt)
+		{
+			moment.locale('es');
+			return moment(dt).format('MMMM Do YYYY'); // August 31st 2015, 2:25:55 pm
+		}
+
+		$scope.hora = function(a,b)
+		{
+			moment.locale('es');
+			return moment(a+' '+b).format('h:mm a');
+		}
 	})
 	
 
@@ -262,6 +281,13 @@
 				increaseArea: '20%'
 			});
 		});
+
+		$scope.fecha = function(dt)
+		{
+			moment.locale('es');
+			// return moment().format('MMM Do YYYY');
+			return moment(dt).startOf('day').fromNow();
+		}
 	})
 
 	.controller('responderCtrl', function($scope, $routeParams, Contesta) 
@@ -333,6 +359,13 @@
 				increaseArea: '20%'
 			});
 		});
+
+		$scope.fecha = function(dt)
+		{
+			moment.locale('es');
+			// return moment().format('MMM Do YYYY');
+			return moment(dt).startOf('day').fromNow();
+		}
 	})
 
 	.controller('contestadoCtrl', function($scope, Contestados, accionesTabla) 
@@ -369,6 +402,13 @@
 				increaseArea: '20%'
 			});
 		});
+
+		$scope.fecha = function(dt)
+		{
+			moment.locale('es');
+			// return moment().format('MMM Do YYYY');
+			return moment(dt).startOf('day').fromNow();
+		}
 	})
 
 	.filter('capitalize', function() {
