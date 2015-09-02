@@ -11,19 +11,18 @@
     <div class="panel-body minimal">
         <div class="mail-option">
             <div class="btn-group hidden-phone">
-                <a data-toggle="dropdown" href="#/" class="btn mini blue">
+                <a data-toggle="dropdown" href="" class="btn mini blue">
                     Mas
                     <i class="fa fa-angle-down "></i>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#/"><i class="fa fa-pencil"></i> Marcar como reido</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#/"><i class="fa fa-trash-o"></i> Eliminar</a></li>
+                    <li><a href="#/" ng-click="marcarLeido()"><i class="fa fa-pencil"></i> Marcar como reido</a></li>
+                    <li><a href="#/" ng-click="eliminar()"><i class="fa fa-trash-o"></i> Eliminar</a></li>
                 </ul>
             </div>
 
             <div class="btn-group">
-                <a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="#/" class="btn mini tooltips">
+                <a data-original-title="Refresh" ng-click="recargar()" data-placement="top" data-toggle="dropdown" href="#/" class="btn mini tooltips">
                     <i class=" fa fa-refresh"></i>
                 </a>
             </div>
@@ -42,9 +41,9 @@
         <div class="table-inbox-wrap ">
             <table class="table table-inbox table-hover">
         <tbody>
-        <tr ng-class="{unread: pedido.visto == 0}" ng-repeat="pedido in pedidos  | filter: buscado.caracteristica | pagination: curPage * pageSize | limitTo: pageSize " on-last-repeat>
+        <tr ng-class="{unread: pedido.visto == 0}" ng-repeat="pedido in pedidos  | filter: buscado.caracteristica | pagination: curPage * pageSize | limitTo: pageSize ">
             <td class="inbox-small-cells">
-                <input type="checkbox" class="mail-checkbox">
+                <input icheck type="checkbox" class="mail-checkbox"  ng-model="pedido.seleccionado" ng-checked="master" data-ng-change="muestrate()">
             </td>
             <td class="inbox-small-cells"><i class="fa fa-star " ng-class="{contestado: pedido.importante == 1}" ng-click="cambiar(pedido.id)"></i></td>
             <td class="view-message dont-show"><a ng-href="#/vista/{{pedido.id}}" ng-click="abrir(pedido.id)">{{pedido.nombre}}</a></td>

@@ -132,7 +132,7 @@
 		};
 	})
 
-	.controller('listaCtrl', function($scope, Listado, accionesTabla) 
+	.controller('listaCtrl', function($scope, Listado, accionesTabla, DatosPedido, $route) 
 	{
 		$scope.pedidos = Listado.query();
 		/*Variables de paginacion*/
@@ -160,20 +160,68 @@
 			};
 		}
 
-		$scope.$on('onRepeatLast', function(scope, element, attrs){
-			angular.element('.minimal input').iCheck({
-				checkboxClass: 'icheckbox_minimal',
-				radioClass: 'iradio_minimal',
-				increaseArea: '20%'
-			});
-		});
-
 		$scope.fecha = function(dt)
 		{
 			moment.locale('es');
-			// return moment().format('MMM Do YYYY');
 			return moment(dt).startOf('day').fromNow();
 		}
+
+	    $scope.change = function() {
+	        for(var i = 0; i < $scope.pedidos.length; i++) {
+	            if($scope.pedidos[i].seleccionado) {
+	                $scope.pedidos[i].status = $scope.pedidos.status;
+	                $scope.pedidos[i].seleccionado = false;
+	            }
+	            $scope.show = false;
+	        }
+
+	    };
+
+	    $scope.muestrate = function()
+	    {
+	        console.log($scope.pedidos);    	
+	    }
+
+	    $scope.marcarLeido = function()
+	    {
+	    	for (var i = 0; i < $scope.pedidos.length; i++)
+	    	{
+	    		if($scope.pedidos[i].seleccionado == true)
+	    		{
+	    			accionesTabla.visto($scope.pedidos[i].id); 
+	    			$scope.pedidos[i].seleccionado = false;
+	    			$scope.pedidos[i].visto = 1;
+	    		}
+	    	};
+	    }
+
+	    $scope.eliminar = function()
+	    {
+	    	swal({   title: "Estas seguro?",   
+				text: "Ya no podras recuperar estos pedidos",   
+				type: "warning",   
+				showCancelButton: true,   
+				confirmButtonColor: "#DD6B55",  
+				cancelButtonText: "Cancelar!", 
+				confirmButtonText: "Si, Eliminalos!",   
+				closeOnConfirm: false }, 
+				function(){
+				for (var i = 0; i < $scope.pedidos.length; i++) {
+		    		if($scope.pedidos[i].seleccionado == true)
+		    		{
+		    			DatosPedido.borrar($scope.pedidos[i].id); 
+		    			$scope.pedidos.splice(i,1);
+		    		} 
+		    	};
+				swal("Eliminados!", "Los pedidos han sido eliminados.", "success"); 
+				
+			});
+	    }
+
+	    $scope.recargar = function()
+	    {
+	    	$route.reload();
+	    }
 
 	})
 
@@ -245,6 +293,11 @@
 	      $scope.tab = setTab;
 	    };
 
+	    $scope.resetear = function()
+	    {
+	    	location.reload();
+	    }
+
 	})
 
 	.controller('importanteCtrl', function($scope, Importantes, accionesTabla) 
@@ -274,20 +327,27 @@
 			};
 		}
 
-		$scope.$on('onRepeatLast', function(scope, element, attrs){
-			angular.element('.minimal input').iCheck({
-				checkboxClass: 'icheckbox_minimal',
-				radioClass: 'iradio_minimal',
-				increaseArea: '20%'
-			});
-		});
-
 		$scope.fecha = function(dt)
 		{
 			moment.locale('es');
-			// return moment().format('MMM Do YYYY');
 			return moment(dt).startOf('day').fromNow();
 		}
+
+		$scope.change = function() {
+	        for(var i = 0; i < $scope.pedidos.length; i++) {
+	            if($scope.pedidos[i].seleccionado) {
+	                $scope.pedidos[i].status = $scope.pedidos.status;
+	                $scope.pedidos[i].seleccionado = false;
+	            }
+	            $scope.show = false;
+	        }
+
+	    };
+
+	    $scope.muestrate = function()
+	    {
+	        console.log($scope.pedidos);    	
+	    }
 	})
 
 	.controller('responderCtrl', function($scope, $routeParams, Contesta) 
@@ -352,20 +412,28 @@
 			};
 		}
 
-		$scope.$on('onRepeatLast', function(scope, element, attrs){
-			angular.element('.minimal input').iCheck({
-				checkboxClass: 'icheckbox_minimal',
-				radioClass: 'iradio_minimal',
-				increaseArea: '20%'
-			});
-		});
-
 		$scope.fecha = function(dt)
 		{
 			moment.locale('es');
 			// return moment().format('MMM Do YYYY');
 			return moment(dt).startOf('day').fromNow();
 		}
+
+		$scope.change = function() {
+	        for(var i = 0; i < $scope.pedidos.length; i++) {
+	            if($scope.pedidos[i].seleccionado) {
+	                $scope.pedidos[i].status = $scope.pedidos.status;
+	                $scope.pedidos[i].seleccionado = false;
+	            }
+	            $scope.show = false;
+	        }
+
+	    };
+
+	    $scope.muestrate = function()
+	    {
+	        console.log($scope.pedidos);    	
+	    }
 	})
 
 	.controller('contestadoCtrl', function($scope, Contestados, accionesTabla) 
@@ -395,20 +463,28 @@
 			};
 		}
 
-		$scope.$on('onRepeatLast', function(scope, element, attrs){
-			angular.element('.minimal input').iCheck({
-				checkboxClass: 'icheckbox_minimal',
-				radioClass: 'iradio_minimal',
-				increaseArea: '20%'
-			});
-		});
-
 		$scope.fecha = function(dt)
 		{
 			moment.locale('es');
 			// return moment().format('MMM Do YYYY');
 			return moment(dt).startOf('day').fromNow();
 		}
+
+		$scope.change = function() {
+	        for(var i = 0; i < $scope.pedidos.length; i++) {
+	            if($scope.pedidos[i].seleccionado) {
+	                $scope.pedidos[i].status = $scope.pedidos.status;
+	                $scope.pedidos[i].seleccionado = false;
+	            }
+	            $scope.show = false;
+	        }
+
+	    };
+
+	    $scope.muestrate = function()
+	    {
+	        console.log($scope.pedidos);    	
+	    }
 	})
 
 	.filter('capitalize', function() {
@@ -491,6 +567,41 @@
         }, function(error) {
 
         });
-	});
+	})
+
+	.directive('icheck', ['$timeout', '$parse', function($timeout, $parse) {
+	    return {
+	        require: 'ngModel',
+
+	        link: function($scope, element, $attrs, modelCtrl) {
+	            var value = $parse($attrs['ngValue'])($scope);
+	            var ngModel = $attrs['ngModel'];
+	            var $element = $(element);
+
+	            return $timeout(function() {
+	                $element.iCheck({
+	                    checkboxClass: 'icheckbox_minimal',
+						radioClass: 'iradio_minimal',
+						increaseArea: '20%'
+	                }).on('ifChanged', function(event) {
+	                    if ($element.attr('type') === 'checkbox' && ngModel) {
+	                        $scope.$apply(function() {
+	                            modelCtrl.$setViewValue(Boolean(event.target.checked));
+	                        });
+	                    }
+	                    if ($element.attr('type') === 'radio' && ngModel) {
+	                        $scope.$apply(function() {
+	                            modelCtrl.$setViewValue(value);
+	                        });
+	                    }
+	                });
+
+	                $scope.$watch(ngModel, function() {
+	                    $element.iCheck('update');
+	                });
+	            });
+	        }
+	    };
+	}]);
 
 })();
