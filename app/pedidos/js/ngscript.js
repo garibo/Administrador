@@ -275,10 +275,29 @@
 	})
 	
 
-	.controller('tabCtrl', function($scope, NoVisto) 
+	.controller('tabCtrl', function($scope, NoVisto, $location) 
 	{
 		$scope.vistos = NoVisto.query();
-	    $scope.tab = 1;
+	    $scope.tab = 1;	    
+
+	    switch ($location.path()) {
+			
+			case "/contestados":
+		    	$scope.tab = 2;
+		    break;
+
+		    case "/importantes":
+		    	$scope.tab = 3;
+		    break;
+
+		    case "/eliminados":
+		    	$scope.tab = 4;
+		    break;
+
+		    default:
+		    	$scope.tab = 1;
+	    }
+
 
 	    $scope.isSet = function(checkTab) {
 	      return $scope.tab === checkTab;
