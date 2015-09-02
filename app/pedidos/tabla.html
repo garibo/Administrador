@@ -43,7 +43,7 @@
         <tbody>
         <tr ng-class="{unread: pedido.visto == 0}" ng-repeat="pedido in pedidos  | filter: buscado.caracteristica | pagination: curPage * pageSize | limitTo: pageSize ">
             <td class="inbox-small-cells">
-                <input icheck type="checkbox" class="mail-checkbox"  ng-model="pedido.seleccionado" ng-checked="master" data-ng-change="muestrate()">
+                <input icheck type="checkbox" class="mail-checkbox"  ng-model="pedido.seleccionado" ng-checked="master">
             </td>
             <td class="inbox-small-cells"><i class="fa fa-star " ng-class="{contestado: pedido.importante == 1}" ng-click="cambiar(pedido.id)"></i></td>
             <td class="view-message dont-show"><a ng-href="#/vista/{{pedido.id}}" ng-click="abrir(pedido.id)">{{pedido.nombre}}</a></td>

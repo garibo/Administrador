@@ -177,11 +177,6 @@
 
 	    };
 
-	    $scope.muestrate = function()
-	    {
-	        console.log($scope.pedidos);    	
-	    }
-
 	    $scope.marcarLeido = function()
 	    {
 	    	for (var i = 0; i < $scope.pedidos.length; i++)
@@ -300,7 +295,7 @@
 
 	})
 
-	.controller('importanteCtrl', function($scope, Importantes, accionesTabla) 
+	.controller('importanteCtrl', function($scope, Importantes, accionesTabla, DatosPedido, $route) 
 	{
 		$scope.pedidos = Importantes.query();
 		/*Variables de paginacion*/
@@ -344,9 +339,45 @@
 
 	    };
 
-	    $scope.muestrate = function()
+	    $scope.marcarLeido = function()
 	    {
-	        console.log($scope.pedidos);    	
+	    	for (var i = 0; i < $scope.pedidos.length; i++)
+	    	{
+	    		if($scope.pedidos[i].seleccionado == true)
+	    		{
+	    			accionesTabla.visto($scope.pedidos[i].id); 
+	    			$scope.pedidos[i].seleccionado = false;
+	    			$scope.pedidos[i].visto = 1;
+	    		}
+	    	};
+	    }
+
+	    $scope.eliminar = function()
+	    {
+	    	swal({   title: "Estas seguro?",   
+				text: "Ya no podras recuperar estos pedidos",   
+				type: "warning",   
+				showCancelButton: true,   
+				confirmButtonColor: "#DD6B55",  
+				cancelButtonText: "Cancelar!", 
+				confirmButtonText: "Si, Eliminalos!",   
+				closeOnConfirm: false }, 
+				function(){
+				for (var i = 0; i < $scope.pedidos.length; i++) {
+		    		if($scope.pedidos[i].seleccionado == true)
+		    		{
+		    			DatosPedido.borrar($scope.pedidos[i].id); 
+		    			$scope.pedidos.splice(i,1);
+		    		} 
+		    	};
+				swal("Eliminados!", "Los pedidos han sido eliminados.", "success"); 
+				
+			});
+	    }
+
+	    $scope.recargar = function()
+	    {
+	    	$route.reload();
 	    }
 	})
 
@@ -385,7 +416,7 @@
         }
 	})
 
-	.controller('eliminadoCtrl', function($scope, Eliminado, accionesTabla) 
+	.controller('eliminadoCtrl', function($scope, Eliminado, accionesTabla, DatosPedido, $route) 
 	{
 		$scope.pedidos = Eliminado.query();
 		/*Variables de paginacion*/
@@ -430,13 +461,49 @@
 
 	    };
 
-	    $scope.muestrate = function()
+	    $scope.marcarLeido = function()
 	    {
-	        console.log($scope.pedidos);    	
+	    	for (var i = 0; i < $scope.pedidos.length; i++)
+	    	{
+	    		if($scope.pedidos[i].seleccionado == true)
+	    		{
+	    			accionesTabla.visto($scope.pedidos[i].id); 
+	    			$scope.pedidos[i].seleccionado = false;
+	    			$scope.pedidos[i].visto = 1;
+	    		}
+	    	};
+	    }
+
+	    $scope.eliminar = function()
+	    {
+	    	swal({   title: "Estas seguro?",   
+				text: "Ya no podras recuperar estos pedidos",   
+				type: "warning",   
+				showCancelButton: true,   
+				confirmButtonColor: "#DD6B55",  
+				cancelButtonText: "Cancelar!", 
+				confirmButtonText: "Si, Eliminalos!",   
+				closeOnConfirm: false }, 
+				function(){
+				for (var i = 0; i < $scope.pedidos.length; i++) {
+		    		if($scope.pedidos[i].seleccionado == true)
+		    		{
+		    			DatosPedido.borrar($scope.pedidos[i].id); 
+		    			$scope.pedidos.splice(i,1);
+		    		} 
+		    	};
+				swal("Eliminados!", "Los pedidos han sido eliminados.", "success"); 
+				
+			});
+	    }
+
+	    $scope.recargar = function()
+	    {
+	    	$route.reload();
 	    }
 	})
 
-	.controller('contestadoCtrl', function($scope, Contestados, accionesTabla) 
+	.controller('contestadoCtrl', function($scope, Contestados, accionesTabla, DatosPedido, $route) 
 	{
 		$scope.pedidos = Contestados.query();
 		/*Variables de paginacion*/
@@ -481,9 +548,45 @@
 
 	    };
 
-	    $scope.muestrate = function()
+	    $scope.marcarLeido = function()
 	    {
-	        console.log($scope.pedidos);    	
+	    	for (var i = 0; i < $scope.pedidos.length; i++)
+	    	{
+	    		if($scope.pedidos[i].seleccionado == true)
+	    		{
+	    			accionesTabla.visto($scope.pedidos[i].id); 
+	    			$scope.pedidos[i].seleccionado = false;
+	    			$scope.pedidos[i].visto = 1;
+	    		}
+	    	};
+	    }
+
+	    $scope.eliminar = function()
+	    {
+	    	swal({   title: "Estas seguro?",   
+				text: "Ya no podras recuperar estos pedidos",   
+				type: "warning",   
+				showCancelButton: true,   
+				confirmButtonColor: "#DD6B55",  
+				cancelButtonText: "Cancelar!", 
+				confirmButtonText: "Si, Eliminalos!",   
+				closeOnConfirm: false }, 
+				function(){
+				for (var i = 0; i < $scope.pedidos.length; i++) {
+		    		if($scope.pedidos[i].seleccionado == true)
+		    		{
+		    			DatosPedido.borrar($scope.pedidos[i].id); 
+		    			$scope.pedidos.splice(i,1);
+		    		} 
+		    	};
+				swal("Eliminados!", "Los pedidos han sido eliminados.", "success"); 
+				
+			});
+	    }
+
+	    $scope.recargar = function()
+	    {
+	    	$route.reload();
 	    }
 	})
 
