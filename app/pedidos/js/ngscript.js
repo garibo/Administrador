@@ -270,7 +270,7 @@
 		$scope.hora = function(a,b)
 		{
 			moment.locale('es');
-			return moment(a+' '+b).format('h:mm a');
+			return a == undefined ? moment().format('h:mm a') : moment(a+' '+b).format('h:mm a');
 		}
 	})
 	
