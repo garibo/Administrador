@@ -160,10 +160,10 @@
 			};
 		}
 
-		$scope.fecha = function(dt)
+		$scope.fecha = function(dt, dh)
 		{
 			moment.locale('es');
-			return moment(dt).startOf('day').fromNow();
+			return moment(dt+" "+dh).startOf('minute').fromNow();
 		}
 
 	    $scope.change = function() {
@@ -341,10 +341,10 @@
 			};
 		}
 
-		$scope.fecha = function(dt)
+		$scope.fecha = function(dt, dh)
 		{
 			moment.locale('es');
-			return moment(dt).startOf('day').fromNow();
+			return moment(dt+" "+dh).startOf('minute').fromNow();
 		}
 
 		$scope.change = function() {
@@ -462,11 +462,11 @@
 			};
 		}
 
-		$scope.fecha = function(dt)
+		$scope.fecha = function(dt, dh)
 		{
 			moment.locale('es');
 			// return moment().format('MMM Do YYYY');
-			return moment(dt).startOf('day').fromNow();
+			return moment(dt+" "+dh).startOf('minute').fromNow();
 		}
 
 		$scope.change = function() {
@@ -549,11 +549,11 @@
 			};
 		}
 
-		$scope.fecha = function(dt)
+		$scope.fecha = function(dt, dh)
 		{
 			moment.locale('es');
 			// return moment().format('MMM Do YYYY');
-			return moment(dt).startOf('day').fromNow();
+			return moment(dt+" "+dh).startOf('minute').fromNow();
 		}
 
 		$scope.change = function() {
