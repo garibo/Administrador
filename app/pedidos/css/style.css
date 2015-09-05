@@ -15,3 +15,7 @@ div.imagedropshadow {
        cursor: default;
        color:Gray;
 }
+
+ul li {
+    list-style:none;
+}
