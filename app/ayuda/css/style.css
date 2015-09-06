@@ -97,3 +97,18 @@ li.libre > a:before {
     content: '+';
     font-size: 24px;
 } 
+
+#contenido
+{
+    margin: 0 auto;
+    width: 90%;
+    /*outline: 1px red solid;*/
+}
+
+.explicacion
+{
+    font-family: 'Roboto';
+    font-size: 15px;
+    margin-top: 20px;
+    color: #212121;
+}
