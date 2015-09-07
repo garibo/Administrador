@@ -3,10 +3,11 @@
        <h4 class="gen-case"> Vista - Pedido
            <form action="#" class="pull-right mail-src-position">
             <div class="input-append">
-                <select class="form-control">
-                  <option>Repartidor</option>
-                  <option>Luis Hernandez</option>
-                  <option>Ariel Martinez</option>
+                <select 
+                  class="form-control" 
+                  ng-options="repartidor as (repartidor.nombre+' '+repartidor.apellido_paterno) for repartidor in repartidores" 
+                  ng-model="item" 
+                  ng-change="update()">
                 </select>
             </div>
         </form>

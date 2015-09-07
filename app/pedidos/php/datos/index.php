@@ -31,8 +31,7 @@
 		direcciones.extra,
 		CONCAT(direcciones.calle,' #',direcciones.numero,', ',direcciones.colonia) AS direccion,
 
-		CONCAT(repartidores.nombre,' ',repartidores.apellido_paterno,' ',repartidores.apellido_materno) AS repartidor,
-
+		repartidores.id as repartidor_id,
 		telefonos.telefono,
 
 		pedidos.hora,
@@ -64,7 +63,7 @@
 				'entre_calles' => $fila['entre_calles'],
 				'extra' => $fila['extra'],
 				'direccion' => $fila['direccion'],
-				'repartidor' => $fila['repartidor'],
+				'repartidor_id' => $fila['repartidor_id'],
 				'telefono' => $fila['telefono'],
 				'hora' => $fila['hora'],
 				'fecha' => $fila['fecha'],

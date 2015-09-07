@@ -39,6 +39,10 @@
 		});
 	})
 
+	.factory('Repartidores',function($resource){
+		return $resource('http://localhost/Administrador/app/repartidores/php/api/');
+	})
+
 	.factory('Listado',function($resource){
 		return $resource('http://localhost/administrador/app/pedidos/php/api/');
 	})
@@ -78,6 +82,13 @@
 	      method: 'POST',
 	      data: {'id': id},
 	      url: 'http://localhost/administrador/app/pedidos/php/eliminado/'
+	    });
+	  },
+	  repartidor: function(id, id_repartidor, callback){
+	    $http({
+	      method: 'POST',
+	      data: {'id': id, 'id_repartidor' : id_repartidor },
+	      url: 'http://localhost/administrador/app/pedidos/php/datos/repartidor.php'
 	    });
 	  }
 	};
@@ -229,7 +240,7 @@
 	 };
 	})
 
-	.controller('vistaCtrl', function($scope, $routeParams, DatosPedido) 
+	.controller('vistaCtrl', function($scope, $routeParams, DatosPedido, Repartidores) 
 	{
 		$scope.total = 0;
 		DatosPedido.datos($routeParams.id, function(data) {
@@ -242,6 +253,15 @@
           		$scope.total += $scope.productos[i].precio != null ? parseFloat($scope.productos[i].precio)  : 0;
           		$scope.total += $scope.productos[i].precio_pizza != null ? parseFloat($scope.productos[i].precio_pizza) : 0;
           	};          
+        });
+
+        $scope.repartidores = Repartidores.query(function(){
+        	for (var i = 0; i < $scope.repartidores.length; i++) {
+        		if($scope.repartidores[i].id == $scope.datos.repartidor_id)
+        		{
+        			$scope.item = $scope.repartidores[i];
+        		}
+        	};
         });
 
         $scope.eliminar = function()
@@ -271,6 +291,11 @@
 		{
 			moment.locale('es');
 			return a == undefined ? moment().format('h:mm a') : moment(a+' '+b).format('h:mm a');
+		}
+
+		$scope.update = function() 
+		{
+			DatosPedido.repartidor($routeParams.id, $scope.item.id);
 		}
 	})
 	
