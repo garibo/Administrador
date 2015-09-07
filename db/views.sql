@@ -32,6 +32,20 @@ ORDER BY concurrencia DESC
 LIMIT    5;
 
 
+-------------------------------------------------------------
+-----View para listar pedidos atendidos por cada repartidor--
+-------------------------------------------------------------
+CREATE VIEW pedidos_repartidores AS
+SELECT pedidos.id, clientes.nombre, repartidores.id AS idrepartidor, clientes.id AS idcliente, CONCAT(direcciones.calle,' #',direcciones.numero,', ',direcciones.colonia) AS direccion,  pedidos.fecha, pedidos.hora, pedidos.visto
+FROM pedidos
+	LEFT JOIN direcciones
+ON pedidos.id_direccion = direcciones.id
+	LEFT JOIN clientes
+ON pedidos.id_cliente = clientes.id
+	LEFT JOIN repartidores
+ON pedidos.id_repartidor = repartidores.id
+ORDER BY pedidos.id DESC;
+
 -----------------------------------------------------------
 ---Consulta para listar los datos de un solo pedido--------
 -----------------------------------------------------------

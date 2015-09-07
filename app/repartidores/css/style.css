@@ -2,3 +2,14 @@
 {
 	color: white;
 }
+
+ul li
+{
+	list-style: none;
+}
+
+.bloquear{
+       pointer-events: none !important;
+       cursor: default;
+       color:Gray;
+}

@@ -18,6 +18,7 @@
             <th>Apellido paterno</th>
             <th>Apellido materno</th>
             <th>Telefono</th>
+            <th>Entregas</th>
             <th>Edit</th>
         </tr>
         </thead>
@@ -28,6 +29,7 @@
             <td>{{repartidor.apellido_paterno}}</td>
             <td>{{repartidor.apellido_materno}}</td>
             <td class="center">{{repartidor.telefono}}</td>
+            <td><a class="edit" ng-href="#/info/{{repartidor.id}}">entregas</a></td>
             <td><a class="edit" ng-href="#/editar/{{repartidor.id}}">Edit</a></td>
         </tr>
  

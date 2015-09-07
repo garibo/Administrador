@@ -16,6 +16,10 @@
 		templateUrl: 'editar.html',
 		controller: 'editCtrl'
 		}).
+		when('/info/:id', {
+		templateUrl: 'informacion.html',
+		controller: 'informacionCtrl'
+		}).
 		otherwise({
 			redirectTo: '/'
 		});
@@ -27,6 +31,17 @@
 			},{
 			'update': { method:'PUT' }
 		});
+	})
+
+	.factory('Listado', function($http){
+	return {
+	  datos: function (id, callback){
+	    $http({
+	      method: 'GET',
+	      url: 'http://localhost/administrador/app/repartidores/php/pedidos/'+id
+	    }).success(callback);
+	  }
+	};
 	})
 
 	.controller('repartidoresCtrl', function($scope, Repartidores) 
@@ -127,6 +142,39 @@
 		}
 
 
+	})
+	
+	.filter('pagination', function(){
+	 return function(input, start)
+	 {
+	  start = +start;
+	  return input.slice(start);
+	 };
+	})
+
+	.controller('informacionCtrl', function($scope, Listado, $routeParams, $route) 
+	{
+
+		Listado.datos($routeParams.id, function(data) {
+          $scope.pedidos = data;
+        });
+		
+		$scope.curPage = 0;
+	 	$scope.pageSize = 8;
+	 	$scope.numberOfPages = function() {
+			return Math.ceil($scope.pedidos.length / $scope.pageSize);
+		};
+
+		$scope.fecha = function(dt, dh)
+		{
+			moment.locale('es');
+			return moment(dt+" "+dh).startOf('minute').fromNow();
+		}
+
+		$scope.recargar = function()
+	    {
+	    	$route.reload();
+	    }
 	})
 
 	.controller('perfilCtrl', function($scope, $http) 
