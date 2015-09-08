@@ -18,6 +18,7 @@
 	@$tamano = $request->tamano;
 	@$tipo = $request->tipo;
 	@$imagen_url = $request->imagen_url;
+	@$metodo = $request->metodo;
 
 	switch($_SERVER["REQUEST_METHOD"])
 	{
@@ -26,15 +27,19 @@
 		break;
 
 		case 'POST':
-			Post($nombre, $descripcion, $precio, $ingredientes, $tamano, $tipo, $imagen_url);
-		break;
+			switch ($metodo) {
+				case 'update':
+					Put($nombre, $descripcion, $precio, $ingredientes, $tamano, $tipo, $imagen_url);
+				break;
 
-		case 'PUT':
-			Put($nombre, $descripcion, $precio, $ingredientes, $tamano, $tipo, $imagen_url);
-		break;
-
-		case 'DELETE':
-			Delete();
+				case 'delete':
+					Delete();
+				break;
+				
+				default:
+					Post($nombre, $descripcion, $precio, $ingredientes, $tamano, $tipo, $imagen_url);
+				break;
+			}
 		break;
 	}
 

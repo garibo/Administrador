@@ -29,7 +29,8 @@
 		return $resource('http://localhost/administrador/app/repartidores/php/api/:id',{
 			id : '@id'
 			},{
-			'update': { method:'PUT' }
+			'update': { method:'POST' },
+			'eliminar': { method:'POST' },
 		});
 	})
 
@@ -94,6 +95,7 @@
 						re.apellido_paterno = $scope.repartidores[i].apellido_paterno;
 						re.apellido_materno = $scope.repartidores[i].apellido_materno;
 						re.telefono = $scope.repartidores[i].telefono;
+						re.metodo = "update";
 
 					}
 				}
@@ -113,25 +115,27 @@
 				confirmButtonText: "Si, Eliminalo!",   
 				closeOnConfirm: false }, 
 				function(){  
-				re.$remove(function()
-				{
-					for(var i=0,len=$scope.repartidores.length;i<len;i++)
+					re.metodo = "delete";
+					Repartidores.eliminar({ id: $routeParams.id }, re, function()
 					{
-						if($scope.repartidores[i].id == $routeParams.id)
+						for(var i=0,len=$scope.repartidores.length;i<len;i++)
 						{
-							$scope.repartidores.splice(i,1);
-							swal("Eliminado!", "El registro ha sido eliminado.", "success"); 
-							document.location.href = "http://localhost/administrador/app/repartidores/#/";					
-							break;
+							if($scope.repartidores[i].id == $routeParams.id)
+							{
+								$scope.repartidores.splice(i,1);
+								swal("Eliminado!", "El registro ha sido eliminado.", "success"); 
+								document.location.href = "http://localhost/administrador/app/repartidores/#/";					
+								break;
+							}
 						}
-					}
+					});
 				});
-			});
 		};
 
 
 		$scope.editar = function()
 		{
+			re.metodo = "update";
 			re.id = $routeParams.id;
 			re.nombre = $scope.nombre;
 			re.apellido_paterno = $scope.apellido_paterno;

@@ -4,10 +4,10 @@
 
 
 	.factory('Precios',function($resource){
-		return $resource('http://localhost/administrador/app/ajustes/php/precios/api/',{
+		return $resource('http://localhost/administrador/app/ajustes/php/precios/api/:id',{
 			id : '@id'
 			},{
-			'update': { method:'PUT' }
+			'update': { method:'POST' }
 		});
 	})
 

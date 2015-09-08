@@ -15,6 +15,7 @@
 	@$apellido_paterno = $request->apellido_paterno;
 	@$apellido_materno = $request->apellido_materno;
 	@$telefono = $request->telefono;
+	@$metodo = $request->metodo;
 
 	switch($_SERVER["REQUEST_METHOD"])
 	{
@@ -23,15 +24,19 @@
 		break;
 
 		case 'POST':
-			Post($nombre, $apellido_paterno, $apellido_materno, $telefono);
-		break;
+			switch ($metodo) {
+				case 'update':
+					Put($nombre, $apellido_paterno, $apellido_materno, $telefono);
+				break;
 
-		case 'PUT':
-			Put($nombre, $apellido_paterno, $apellido_materno, $telefono);
-		break;
-
-		case 'DELETE':
-			Delete();
+				case 'delete':
+					Delete();
+				break;
+				
+				default:
+					Post($nombre, $apellido_paterno, $apellido_materno, $telefono);		
+				break;
+			}
 		break;
 	}
 

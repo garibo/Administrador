@@ -25,7 +25,8 @@
 		return $resource('http://localhost/administrador/app/productos/refrescos/php/api/:id',{
 			id : '@id'
 			},{
-			'update': { method:'PUT' }
+			'update': { method:'POST' },
+			'eliminar': { method:'POST' }
 		});
 	})
 
@@ -79,6 +80,7 @@
 					re.nombre = $scope.refrescos[i].nombre;
 					re.descripcion = $scope.refrescos[i].descripcion;
 					re.precio = $scope.refrescos[i].precio;
+					re.metodo = "update";
 				}
 			}
 		},
@@ -97,7 +99,8 @@
 				confirmButtonText: "Si, Eliminalo!",   
 				closeOnConfirm: false }, 
 				function(){  
-				re.$remove(function()
+				re.metodo = "delete";
+				Refrescos.eliminar({ id: $routeParams.id }, re, function()
 				{
 					for(var i=0,len=$scope.refrescos.length;i<len;i++)
 					{
@@ -115,6 +118,7 @@
 
 		$scope.editar = function()
 		{
+			re.metodo = "update";
 			re.id = $routeParams.id;
 			re.nombre = $scope.nombre;
 			re.descripcion = $scope.descripcion;
