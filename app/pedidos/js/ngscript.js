@@ -344,7 +344,7 @@
 		$scope.pedidos = Importantes.query();
 		/*Variables de paginacion*/
 		$scope.curPage = 0;
-	 	$scope.pageSize = 6;
+	 	$scope.pageSize = 8;
 	 	$scope.numberOfPages = function() {
 			return Math.ceil($scope.pedidos.length / $scope.pageSize);
 		};
@@ -465,7 +465,7 @@
 		$scope.pedidos = Eliminado.query();
 		/*Variables de paginacion*/
 		$scope.curPage = 0;
-	 	$scope.pageSize = 6;
+	 	$scope.pageSize = 8;
 	 	$scope.numberOfPages = function() {
 			return Math.ceil($scope.pedidos.length / $scope.pageSize);
 		};
@@ -552,7 +552,7 @@
 		$scope.pedidos = Contestados.query();
 		/*Variables de paginacion*/
 		$scope.curPage = 0;
-	 	$scope.pageSize = 6;
+	 	$scope.pageSize = 8;
 	 	$scope.numberOfPages = function() {
 			return Math.ceil($scope.pedidos.length / $scope.pageSize);
 		};
