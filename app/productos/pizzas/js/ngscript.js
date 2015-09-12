@@ -2,7 +2,7 @@
 
 	angular.module('pizzaApp', ['ngRoute','ngResource','ngMessages'])
 
-	.config(function($routeProvider) {
+	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.
 		when('/', {
 			templateUrl: 'tabla.html',
@@ -19,23 +19,23 @@
 		otherwise({
 			redirectTo: '/'
 		});
-	})
+	}])
 
-	.factory('Pizzas',function($resource){
+	.factory('Pizzas', ['$resource', function($resource){
 		return $resource('http://localhost/administrador/app/productos/pizzas/php/api/:id',{
 			id : '@id'
 			},{
 			'update': { method:'POST' },
 			'eliminar': { method:'POST' },
 		});
-	})
+	}])
 
-	.controller('pizzasCtrl', function($scope, Pizzas) 
+	.controller('pizzasCtrl', ['$scope', 'Pizzas', function($scope, Pizzas) 
 	{
 		$scope.pizzas = Pizzas.query();
-	})
+	}])
 
-	.controller('nuevoCtrl', function($scope, Pizzas) 
+	.controller('nuevoCtrl', ['$scope', 'Pizzas', function($scope, Pizzas) 
 	{
 		$scope.pizzas = Pizzas.query();
 		$scope.agregar = function()
@@ -59,9 +59,9 @@
 			$scope.nuevoForm.$setUntouched();
 			
 		}
-	})
+	}])
 
-	.controller('editCtrl', function($scope, $routeParams, Pizzas) 
+	.controller('editCtrl', ['$scope', '$routeParams', 'Pizzas', function($scope, $routeParams, Pizzas) 
 	{
 		var re = new Pizzas();
 		$scope.pizzas = Pizzas.query(function(data)
@@ -132,9 +132,9 @@
 		};
 
 
-	})
+	}])
 
-	.controller('perfilCtrl', function($scope, $http) 
+	.controller('perfilCtrl', ['$scope', '$http', function($scope, $http) 
 	{
 		$scope.nombrePerfil = "";
 		$http.get('http://localhost/administrador/app/ajustes/php/usn/')
@@ -143,6 +143,6 @@
         }, function(error) {
 
         });
-	});
+	}]);
 	
 })();

@@ -3,16 +3,16 @@
 	angular.module('ajustesApp', ['ngResource', 'ngMessages', 'flow'])
 
 
-	.factory('Precios',function($resource){
+	.factory('Precios',['$resource', function($resource){
 		return $resource('http://localhost/administrador/app/ajustes/php/precios/api/:id',{
 			id : '@id'
 			},{
 			'update': { method:'POST' }
 		});
-	})
+	}])
 
 
-	.factory('Contras', function ($http, $q) {
+	.factory('Contras', ['$http', '$q', function ($http, $q) {
 	    return {
 	        Cambiar: function(contra, contran, contrann) {
 	          return $http({
@@ -39,9 +39,9 @@
 	            });
 	        }
 	    };
-	})
+	}])
 
-	.factory('Usuarios', function ($http, $q) {
+	.factory('Usuarios', ['$http', '$q', function ($http, $q) {
 	    return {
 	        Cambiar: function(nombre) {
 	          return $http({
@@ -66,7 +66,7 @@
 	            });
 	        }
 	    };
-	})
+	}])
 
 	.filter('capitalize', function() {
 	  return function(input, scope) {
@@ -76,7 +76,7 @@
 	  }
 	})
 
-	.controller('preciosCtrl', function($scope, Precios) 
+	.controller('preciosCtrl', ['$scope', 'Precios', function($scope, Precios) 
 	{
 		$scope.precios = Precios.query();
 		var record = new Precios();
@@ -103,9 +103,9 @@
 		}
 
 
-	})
+	}])
 
-	.controller('contraCtrl', function($scope, Contras) 
+	.controller('contraCtrl', ['$scope', 'Contras', function($scope, Contras) 
 	{
 
 	$scope.cambiarContra = function()
@@ -130,9 +130,9 @@
     	$scope.contrann = "";
         $scope.passwordForm.$setUntouched();
 	}
-	})
+	}])
 
-	.controller('userCtrl', function($scope, Usuarios) 
+	.controller('userCtrl', ['$scope', 'Usuarios', function($scope, Usuarios) 
 	{
 		$scope.cambiarNombre = function() 
 		{
@@ -155,7 +155,7 @@
 	        $scope.userForm.$setUntouched();
 		}
 
-	})
+	}])
 
 	.config(['flowFactoryProvider', function (flowFactoryProvider) {
 	  flowFactoryProvider.defaults = {
@@ -174,7 +174,7 @@
 	  });
 	}])
 
-	.controller('perfilCtrl', function($scope, $http) 
+	.controller('perfilCtrl', ['$scope', '$http', function($scope, $http) 
 	{
 		$scope.nombrePerfil = "";
 		$http.get('http://localhost/administrador/app/ajustes/php/usn/')
@@ -183,6 +183,6 @@
         }, function(error) {
 
         });
-	});
+	}]);
 
 })();

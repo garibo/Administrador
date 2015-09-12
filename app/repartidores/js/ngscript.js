@@ -2,7 +2,7 @@
 
 	angular.module('repartidoresApp', ['ngRoute','ngResource', 'ngMessages'])
 
-	.config(function($routeProvider) {
+	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.
 		when('/', {
 		templateUrl: 'tabla.html',
@@ -23,18 +23,18 @@
 		otherwise({
 			redirectTo: '/'
 		});
-	})
+	}])
 
-	.factory('Repartidores',function($resource){
+	.factory('Repartidores', ['$resource', function($resource){
 		return $resource('http://localhost/administrador/app/repartidores/php/api/:id',{
 			id : '@id'
 			},{
 			'update': { method:'POST' },
 			'eliminar': { method:'POST' },
 		});
-	})
+	}])
 
-	.factory('Listado', function($http){
+	.factory('Listado', ['$http', function($http){
 	return {
 	  datos: function (id, callback){
 	    $http({
@@ -43,14 +43,14 @@
 	    }).success(callback);
 	  }
 	};
-	})
+	}])
 
-	.controller('repartidoresCtrl', function($scope, Repartidores) 
+	.controller('repartidoresCtrl', ['$scope', 'Repartidores', function($scope, Repartidores) 
 	{
 		$scope.repartidores = Repartidores.query();
-	})
+	}])
 
-	.controller('nuevoCtrl', function($scope, Repartidores) 
+	.controller('nuevoCtrl', ['$scope', 'Repartidores', function($scope, Repartidores) 
 	{
 		$scope.agregar = function()
 		{
@@ -73,9 +73,9 @@
 			$scope.repartidoresForm.$setUntouched();
 		}
 
-	})
+	}])
 
-	.controller('editCtrl', function($scope, $routeParams, Repartidores) 
+	.controller('editCtrl', ['$scope', '$routeParams', 'Repartidores', function($scope, $routeParams, Repartidores) 
 	{
 		var re = new Repartidores();
 		$scope.repartidores = Repartidores.query(function(data)
@@ -146,7 +146,7 @@
 		}
 
 
-	})
+	}])
 	
 	.filter('pagination', function(){
 	 return function(input, start)
@@ -156,7 +156,7 @@
 	 };
 	})
 
-	.controller('informacionCtrl', function($scope, Listado, $routeParams, $route) 
+	.controller('informacionCtrl', ['$scope', 'Listado', '$routeParams', '$route', function($scope, Listado, $routeParams, $route) 
 	{
 
 		Listado.datos($routeParams.id, function(data) {
@@ -179,9 +179,9 @@
 	    {
 	    	$route.reload();
 	    }
-	})
+	}])
 
-	.controller('perfilCtrl', function($scope, $http) 
+	.controller('perfilCtrl', ['$scope', '$http', function($scope, $http) 
 	{
 		$scope.nombrePerfil = "";
 		$http.get('http://localhost/administrador/app/ajustes/php/usn/')
@@ -190,7 +190,7 @@
         }, function(error) {
 
         });
-	});
+	}]);
 
 
 })();

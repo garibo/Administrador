@@ -2,7 +2,7 @@
 
 	angular.module('otrosApp', ['ngRoute','ngResource','ngMessages'])
 
-	.config(function($routeProvider) {
+	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.
 		when('/', {
 			templateUrl: 'tabla.html',
@@ -19,23 +19,23 @@
 		otherwise({
 			redirectTo: '/'
 		});
-	})
+	}])
 
-	.factory('Otros',function($resource){
+	.factory('Otros', ['$resource', function($resource){
 		return $resource('http://localhost/administrador/app/productos/otros/php/api/:id',{
 			id : '@id'
 			},{
 			'update': { method:'POST' },
 			'eliminar': { method:'POST' },
 		});
-	})
+	}])
 
-	.controller('otrosCtrl', function($scope, Otros) 
+	.controller('otrosCtrl', ['$scope', 'Otros', function($scope, Otros) 
 	{
 		$scope.otros = Otros.query();
-	})
+	}])
 
-	.controller('nuevoCtrl', function($scope, Otros) 
+	.controller('nuevoCtrl', ['$scope', 'Otros', function($scope, Otros) 
 	{
 		$scope.otros = Otros.query();
 		$scope.agregar = function()
@@ -61,9 +61,9 @@
 			$scope.nuevoForm.$setUntouched();
 			
 		}
-	})
+	}])
 
-	.controller('editCtrl', function($scope, $routeParams, Otros) 
+	.controller('editCtrl', ['$scope', '$routeParams', 'Otros', function($scope, $routeParams, Otros) 
 	{
 		var re = new Otros();
 		$scope.otros = Otros.query(function(data)
@@ -133,9 +133,9 @@
 		};
 
 
-	})
+	}])
 
-	.controller('perfilCtrl', function($scope, $http) 
+	.controller('perfilCtrl', ['$scope', '$http', function($scope, $http) 
 	{
 		$scope.nombrePerfil = "";
 		$http.get('http://localhost/administrador/app/ajustes/php/usn/')
@@ -144,5 +144,5 @@
         }, function(error) {
 
         });
-	});
-administrador})();
+	}]);
+})();

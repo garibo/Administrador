@@ -2,7 +2,7 @@
 
 	angular.module('clientesApp', ['ngRoute','ngResource'])
 
-	.config(function($routeProvider) {
+	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.
 		when('/', {
 		templateUrl: 'tabla.html',
@@ -15,9 +15,9 @@
 		otherwise({
 			redirectTo: '/'
 		});
-	})
+	}])
 
-	.factory('Listado', function($http){
+	.factory('Listado', ['$http', function($http){
 	return {
 	  datos: function (id, callback){
 	    $http({
@@ -26,22 +26,22 @@
 	    }).success(callback);
 	  }
 	};
-	})
+	}])
 
-	.factory('Clientes',function($resource){
+	.factory('Clientes', ['$resource', function($resource){
 		return $resource('http://localhost/administrador/app/clientes/php/api/:id',{
 			id : '@id'
 			},{
 			'update': { method:'PUT' }
 		});
-	})
+	}])
 
-	.controller('clientesCtrl', function($scope, Clientes, $route) 
+	.controller('clientesCtrl', ['$scope', 'Clientes', function($scope, Clientes) 
 	{
 		$scope.clientes = Clientes.query();
-	})
+	}])
 
-	.controller('informacionCtrl', function($scope, Listado, $routeParams, $route) 
+	.controller('informacionCtrl', ['$scope', 'Listado', '$routeParams', '$route', function($scope, Listado, $routeParams, $route) 
 	{
 		Listado.datos($routeParams.id, function(data) {
           $scope.pedidos = data;
@@ -57,9 +57,9 @@
 	    {
 	    	$route.reload();
 	    }
-	})
+	}])
 
-	.controller('perfilCtrl', function($scope, $http) 
+	.controller('perfilCtrl', ['$scope', '$http', function($scope, $http) 
 	{
 		$scope.nombrePerfil = "";
 		$http.get('http://localhost/administrador/app/ajustes/php/usn/')
@@ -68,6 +68,6 @@
         }, function(error) {
 
         });
-	});
+	}]);
 
 })();

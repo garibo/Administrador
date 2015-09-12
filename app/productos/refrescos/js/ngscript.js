@@ -2,7 +2,7 @@
 
 	angular.module('refrescoApp', ['ngRoute','ngResource', 'ngMessages'])
 
-	.config(function($routeProvider) {
+	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.
 		when('/', {
 			templateUrl: 'tabla.html',
@@ -19,23 +19,23 @@
 		otherwise({
 			redirectTo: '/'
 		});
-	})
+	}])
 
-	.factory('Refrescos',function($resource){
+	.factory('Refrescos', ['$resource', function($resource){
 		return $resource('http://localhost/administrador/app/productos/refrescos/php/api/:id',{
 			id : '@id'
 			},{
 			'update': { method:'POST' },
 			'eliminar': { method:'POST' }
 		});
-	})
+	}])
 
-	.controller('refrescosCtrl', function($scope, Refrescos) 
+	.controller('refrescosCtrl', ['$scope', 'Refrescos', function($scope, Refrescos) 
 	{
 		$scope.refrescos = Refrescos.query();
-	})
+	}])
 
-	.controller('nuevoCtrl', function($scope, Refrescos) 
+	.controller('nuevoCtrl', ['$scope', 'Refrescos', function($scope, Refrescos) 
 	{
 		$scope.refrescos = Refrescos.query();
 		$scope.agregar = function()
@@ -60,9 +60,9 @@
 			$scope.nuevoForm.$setUntouched();
 			
 		}
-	})
+	}])
 
-	.controller('editCtrl', function($scope, $routeParams, Refrescos) 
+	.controller('editCtrl', ['$scope', '$routeParams', 'Refrescos', function($scope, $routeParams, Refrescos) 
 	{
 		var re = new Refrescos();
 		$scope.refrescos = Refrescos.query(function(data)
@@ -129,9 +129,9 @@
 		};
 
 
-	})
+	}])
 
-	.controller('perfilCtrl', function($scope, $http) 
+	.controller('perfilCtrl', ['$scope', '$http', function($scope, $http) 
 	{
 		$scope.nombrePerfil = "";
 		$http.get('http://localhost/administrador/app/ajustes/php/usn/')
@@ -140,6 +140,6 @@
         }, function(error) {
 
         });
-	});
+	}]);
 	
 })();

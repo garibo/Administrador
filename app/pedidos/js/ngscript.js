@@ -1,7 +1,7 @@
 (function(){
 	angular.module('pedidosApp', ['ngRoute','ngResource'])
 
-	.config(function($routeProvider) {
+	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.
 
 		when('/', {
@@ -37,33 +37,33 @@
 		otherwise({
 			redirectTo: '/'
 		});
-	})
+	}])
 
-	.factory('Repartidores',function($resource){
+	.factory('Repartidores', ['$resource', function($resource){
 		return $resource('http://localhost/Administrador/app/repartidores/php/api/');
-	})
+	}])
 
-	.factory('Listado',function($resource){
+	.factory('Listado', ['$resource', function($resource){
 		return $resource('http://localhost/administrador/app/pedidos/php/api/');
-	})
+	}])
 
-	.factory('Contestados',function($resource){
+	.factory('Contestados', ['$resource', function($resource){
 		return $resource('http://localhost/administrador/app/pedidos/php/cont/getContestados.php');
-	})
+	}])
 
-	.factory('Importantes',function($resource){
+	.factory('Importantes', ['$resource', function($resource){
 		return $resource('http://localhost/administrador/app/pedidos/php/importante/getImportante.php');
-	})
+	}])
 
-	.factory('Eliminado',function($resource){
+	.factory('Eliminado', ['$resource', function($resource){
 		return $resource('http://localhost/administrador/app/pedidos/php/eliminado/getEliminado.php');
-	})
+	}])
 
-	.factory('NoVisto',function($resource){
+	.factory('NoVisto', ['$resource', function($resource){
 		return $resource('http://localhost/administrador/app/pedidos/php/visto/getVisto.php');
-	})
+	}])
 
-	.factory('DatosPedido', function($http){
+	.factory('DatosPedido', ['$http', function($http){
 	return {
 	  datos: function (id, callback){
 	    $http({
@@ -92,9 +92,9 @@
 	    });
 	  }
 	};
-	})
+	}])
 
-	.factory('accionesTabla', function($http){
+	.factory('accionesTabla', ['$http', function($http){
 	return {
 	  visto: function (id){
 	    $http({
@@ -111,9 +111,9 @@
 	    });
 	  }
 	};
-	})
+	}])
 
-	.factory('Contesta',function($http, $q){
+	.factory('Contesta', ['$http', '$q', function($http, $q){
 		return {
 		  datos: function (id, callback){
 		    $http({
@@ -141,9 +141,9 @@
 	            });
         	}
 		};
-	})
+	}])
 
-	.controller('listaCtrl', function($scope, Listado, accionesTabla, DatosPedido, $route) 
+	.controller('listaCtrl', ['$scope', 'Listado', 'accionesTabla', 'DatosPedido', '$route', function($scope, Listado, accionesTabla, DatosPedido, $route) 
 	{
 		$scope.pedidos = Listado.query();
 		/*Variables de paginacion*/
@@ -229,7 +229,7 @@
 	    	$route.reload();
 	    }
 
-	})
+	}])
 
 	.filter('pagination', function()
 	{
@@ -240,7 +240,7 @@
 	 };
 	})
 
-	.controller('vistaCtrl', function($scope, $routeParams, DatosPedido, Repartidores) 
+	.controller('vistaCtrl', ['$scope', '$routeParams', 'DatosPedido', 'Repartidores', function($scope, $routeParams, DatosPedido, Repartidores) 
 	{
 		$scope.total = 0;
 		DatosPedido.datos($routeParams.id, function(data) {
@@ -297,10 +297,10 @@
 		{
 			DatosPedido.repartidor($routeParams.id, $scope.item.id);
 		}
-	})
+	}])
 	
 
-	.controller('tabCtrl', function($scope, NoVisto, $location) 
+	.controller('tabCtrl', ['$scope', 'NoVisto', '$location', function($scope, NoVisto, $location) 
 	{
 		$scope.vistos = NoVisto.query();
 	    $scope.tab = 1;	    
@@ -337,9 +337,9 @@
 	    	location.reload();
 	    }
 
-	})
+	}])
 
-	.controller('importanteCtrl', function($scope, Importantes, accionesTabla, DatosPedido, $route) 
+	.controller('importanteCtrl', ['$scope', 'Importantes', 'accionesTabla', 'DatosPedido', '$route', function($scope, Importantes, accionesTabla, DatosPedido, $route) 
 	{
 		$scope.pedidos = Importantes.query();
 		/*Variables de paginacion*/
@@ -423,9 +423,9 @@
 	    {
 	    	$route.reload();
 	    }
-	})
+	}])
 
-	.controller('responderCtrl', function($scope, $routeParams, Contesta) 
+	.controller('responderCtrl', ['$scope', '$routeParams', 'Contesta', function($scope, $routeParams, Contesta) 
 	{
 		Contesta.datos($routeParams.id, function(data) {
         	$scope.datos = data[0];
@@ -458,9 +458,9 @@
         {
         	document.location.href = "http://localhost/administrador/app/pedidos/#/vista/"+$routeParams.id
         }
-	})
+	}])
 
-	.controller('eliminadoCtrl', function($scope, Eliminado, accionesTabla, DatosPedido, $route) 
+	.controller('eliminadoCtrl', ['$scope', 'Eliminado', 'accionesTabla', 'DatosPedido', '$route', function($scope, Eliminado, accionesTabla, DatosPedido, $route) 
 	{
 		$scope.pedidos = Eliminado.query();
 		/*Variables de paginacion*/
@@ -545,9 +545,9 @@
 	    {
 	    	$route.reload();
 	    }
-	})
+	}])
 
-	.controller('contestadoCtrl', function($scope, Contestados, accionesTabla, DatosPedido, $route) 
+	.controller('contestadoCtrl', ['$scope', 'Contestados', 'accionesTabla', 'DatosPedido', '$route', function($scope, Contestados, accionesTabla, DatosPedido, $route) 
 	{
 		$scope.pedidos = Contestados.query();
 		/*Variables de paginacion*/
@@ -632,7 +632,7 @@
 	    {
 	    	$route.reload();
 	    }
-	})
+	}])
 
 	.filter('capitalize', function() {
 	  return function(input, scope) {
@@ -697,7 +697,7 @@
 	  };
 	})
 
-	.controller('perfilCtrl', function($scope, $http) 
+	.controller('perfilCtrl', ['$scope', '$http', function($scope, $http) 
 	{
 		$scope.nombrePerfil = "";
 		$http.get('http://localhost/administrador/app/ajustes/php/usn/')
@@ -706,7 +706,7 @@
         }, function(error) {
 
         });
-	})
+	}])
 
 	.directive('icheck', ['$timeout', '$parse', function($timeout, $parse) {
 	    return {

@@ -3,7 +3,7 @@
 	angular.module('ayudaApp', ['ngRoute','ngResource'])
 
 
-	.controller('perfilCtrl', function($scope, $http) 
+	.controller('perfilCtrl', ['$scope', '$http', function($scope, $http) 
 	{
 		$scope.nombrePerfil = "";
 		$http.get('http://localhost/administrador/app/ajustes/php/usn/')
@@ -12,7 +12,7 @@
         }, function(error) {
 
         });
-	});
+	}]);
 
 
 })();

@@ -6,18 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="ThemeBucket">
-    <link rel="shortcut icon" href="assets/images/favicon.png">
+    <link rel="shortcut icon" href="../assets/images/favicon.png">
 
     <title>Login</title>
 
     <!--Core CSS -->
-    <link href="assets/bs3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/bootstrap-reset.css" rel="stylesheet">
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="../assets/bs3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap-reset.css" rel="stylesheet">
+    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/style-responsive.css" rel="stylesheet" />
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/style-responsive.css" rel="stylesheet" />
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]>
@@ -53,8 +53,8 @@
 
 
 
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/bs3/js/bootstrap.min.js"></script>
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/bs3/js/bootstrap.min.js"></script>
 
   </body>
 </html>
