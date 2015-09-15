@@ -277,7 +277,7 @@
 				function(){  
 				DatosPedido.borrar($routeParams.id); 
 				swal("Eliminado!", "El pedido ha sido eliminado.", "success"); 
-				document.location.href = "http://localhost/administrador/app/pedidos/#/"
+				document.location.href = "http://localhost/administrador/app/pedidos/#/";
 			});
 		};
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="loginApp">
 <head>
     <meta charset="utf-8">
 
@@ -30,21 +30,24 @@
     <![endif]-->
 </head>
 
-  <body class="login-body">
+  <body class="login-body" ng-controller="preciosCtrl">
+    <div id="posicion"></div>
+
+
 
     <div class="container">
 
-      <form class="form-signin" action="index.html">
+      <form class="form-signin" ng-submit="entrar()">
         <h2 class="form-signin-heading">Entra ahora</h2>
         <div class="login-wrap">
             <div class="user-login-info">
-                <input type="text" class="form-control" placeholder="Email" autofocus>
-                <input type="password" class="form-control" placeholder="Contraseña">
+                <input type="text" ng-model="email" class="form-control" placeholder="Email" autofocus>
+                <input type="password" ng-model="contra" class="form-control" placeholder="Contraseña">
             </div>
             <label class="checkbox">
                 <input type="checkbox" value="remember-me"> Recuerdame
             </label>
-            <button class="btn btn-lg btn-login btn-block" type="submit">Logueate</button>
+            <button class="btn btn-lg btn-login btn-block" type="submit" id="mandar">Logueate</button>
         </div>
 
       </form>
@@ -55,6 +58,8 @@
 
     <script src="../assets/js/jquery.js"></script>
     <script src="../assets/bs3/js/bootstrap.min.js"></script>
+    <script src="../assets/js/angularjs/angular.min.js"></script>
+    <script src="js/script.js"></script>
 
   </body>
 </html>
