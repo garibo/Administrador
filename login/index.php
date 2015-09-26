@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="ThemeBucket">
-    <link rel="shortcut icon" href="../assets/images/favicon.png">
+    <link rel="shortcut icon" href="../assets/images/cheese-burger.ico">
 
     <title>Login</title>
 
@@ -45,7 +45,6 @@
                 <input type="password" ng-model="contra" class="form-control" placeholder="Contraseña">
             </div>
             <label class="checkbox">
-                <input type="checkbox" value="remember-me" ng-model="recuerdame"> Recuerdame
             </label>
             <button class="btn btn-lg btn-login btn-block" type="submit" id="mandar">Logueate</button>
         </div>

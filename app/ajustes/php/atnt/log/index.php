@@ -13,12 +13,11 @@
 	$request = json_decode($postdata);
 	@$email = $request->email;
 	@$contra = $request->contra;
-	@$recuerdame = $request->recuerdame;
 
 	switch($_SERVER["REQUEST_METHOD"])
 	{
 		case 'POST':
-			Post($contra, $email, $recuerdame);
+			Post($contra, $email);
 		break;
 
 	}
@@ -36,7 +35,7 @@
 		return $plaintext;
 	}
 
-	function Post($contra, $email, $recuerdame)
+	function Post($contra, $email)
 	{
 
 		$datos = array();

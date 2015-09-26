@@ -1,3 +1,10 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION['username']))
+    {
+      header("Location: ../../login");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="ThemeBucket">
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="../../assets/images/cheese-burger.ico">
 
     <title>Ayuda</title>
 
@@ -59,7 +66,7 @@
             </a>
             <ul class="dropdown-menu extended logout">
                 <li><a href="../ajustes"><i class="fa fa-cog"></i> Ajustes</a></li>
-                <li><a href="login.html"><i class="fa fa-key"></i>Salir </a></li>
+                <li><a href="../ajustes/php/atnt/log/salir.php"><i class="fa fa-key"></i>Salir </a></li>
             </ul>
         </li>
     </ul>
