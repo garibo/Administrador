@@ -1,4 +1,5 @@
 <?php 
+	session_start();
 	header("Access-Control-Allow-Orgin: *");
 	header("Access-Control-Allow-Methods: *");
 	header("Content-Type: application/json");
@@ -12,11 +13,12 @@
 	$request = json_decode($postdata);
 	@$email = $request->email;
 	@$contra = $request->contra;
+	@$recuerdame = $request->recuerdame;
 
 	switch($_SERVER["REQUEST_METHOD"])
 	{
 		case 'POST':
-			Post($contra, $email);
+			Post($contra, $email, $recuerdame);
 		break;
 
 	}
@@ -34,7 +36,7 @@
 		return $plaintext;
 	}
 
-	function Post($contra, $email)
+	function Post($contra, $email, $recuerdame)
 	{
 
 		$datos = array();
@@ -56,6 +58,7 @@
 
 		if($datos[0]["pass"] == $contra && $email == $datos[0]["username"])
 		{
+			$_SESSION["username"] = $datos[0]["username"];
 			$respuesta[0] = array(
 			'respuesta' => "ok"
 			);

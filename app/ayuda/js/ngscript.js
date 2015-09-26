@@ -1,6 +1,6 @@
 (function(){
 
-	angular.module('ayudaApp', ['ngRoute','ngResource'])
+	angular.module('ayudaApp', [])
 
 
 	.controller('perfilCtrl', ['$scope', '$http', function($scope, $http) 

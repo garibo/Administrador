@@ -1,6 +1,6 @@
 (function(){
 
-	angular.module('estadisticaApp', ['ngRoute','ngResource', 'ngMessages'])
+	angular.module('estadisticaApp', [])
 
 
 	.controller('perfilCtrl', ['$scope', '$http', function($scope, $http) 

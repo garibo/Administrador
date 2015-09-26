@@ -4,13 +4,14 @@
 
 	.factory('Contras', ['$http', '$q', function ($http, $q) {
 	    return {
-	        logearse: function(contra, email) {
+	        logearse: function(contra, email, recuerdame) {
 	          return $http({
 				method: "POST",
 				url: "http://localhost/administrador/app/ajustes/php/atnt/log/index.php",
 				data: {
 					"contra" 	: contra,
-					"email" 	: email
+					"email" 	: email,
+					"recuerdame": recuerdame
 				},
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 				})
@@ -39,7 +40,7 @@
 		$scope.entrar = function()
 		{
 			var $btn = $("#mandar").button('loading');
-			Contras.logearse($scope.contra, $scope.email)
+			Contras.logearse($scope.contra, $scope.email, $scope.recuerdame)
 			.then(function(data) {
 	            if (data.respuesta === 'ok') {
 	            	$btn.button('reset');

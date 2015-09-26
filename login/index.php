@@ -45,7 +45,7 @@
                 <input type="password" ng-model="contra" class="form-control" placeholder="Contraseña">
             </div>
             <label class="checkbox">
-                <input type="checkbox" value="remember-me"> Recuerdame
+                <input type="checkbox" value="remember-me" ng-model="recuerdame"> Recuerdame
             </label>
             <button class="btn btn-lg btn-login btn-block" type="submit" id="mandar">Logueate</button>
         </div>
