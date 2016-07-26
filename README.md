@@ -1,32 +1,34 @@
 Sistema de pedidos a Pizzeria
 =============================
 
-Dashboard para una aplicacion de pedido de productos a domicilio
+Dascreenshots/shboard para una aplicacion de pedido de productos a domicilio
 
-![image](sh0.png)
+![image](screenshots/sh0.png)
 
-![image](sh1.png)
+![image](screenshots/sh1.png)
 
-![image](sh2.png)
+![image](screenshots/sh2.png)
 
-![image](sh3.png)
+![image](screenshots/sh3.png)
 
-![image](sh4.png)
+![image](screenshots/sh4.png)
 
-![image](sh5.png)
+![image](screenshots/sh5.png)
 
-![image](sh6.png)
+![image](screenshots/sh6.png)
 
-![image](sh7.png)
+![image](screenshots/sh7.png)
 
-![image](sh8.png)
+![image](screenshots/sh8.png)
 
-![image](sh9.png)
+![image](screenshots/sh9.png)
 
-![image](sh10.png)
+![image](screenshots/sh10.png)
 
-![image](sh11.png)
+![image](screenshots/sh11.png)
 
-![image](sh12.png)
+![image](screenshots/sh12.5.png)
 
-![image](sh13.png)
+![image](screenshots/sh12.png)
+
+![image](screenshots/sh13.png)
