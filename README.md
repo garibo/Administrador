@@ -3,7 +3,7 @@ Dashboard de Sistema de pedidos a Pizzeria
 Dashboard que forma parte de un sistema de pedido de productos a domicilio.
 Este Dashboard toma y sirve datos de una aplicacion movil [YesApp](https://github.com/garibo/YesApp) desde la cual puedes hacer pedidos de comida a domicilio. 
 Esta aplicacion web fue contruida usando los frameworks:
-- (https://angularjs.org/)
+- [AngularJS](https://angularjs.org/)
 - [JQuery](http://jquery.com/)
 - [Bootstrap](http://getbootstrap.com/)
 
